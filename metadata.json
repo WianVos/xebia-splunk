@@ -1,0 +1,777 @@
+{
+  "name": "xebia-splunk",
+  "author": "wianvos",
+  "description": "",
+  "license": "",
+  "project_page": "",
+  "source": "",
+  "summary": "",
+  "version": "1.0.0.0",
+  "checksums": {
+    "Modulefile": "42d7a48dffb7fa712b27fdd7f8581b0f",
+    "README.markdown": "0df89ea0d030f44d5edf6eb7fe70a00d",
+    "README.md": "1c367b5ccfa768ae2e6ac2717baeb00f",
+    "Rakefile": "f37e6131fe7de9a49b09d31596f5fbf1",
+    "files/app_test/testing.txt": "a1ef779b5765ad529ff57698cc1ccf85",
+    "files/app_test/testing2.txt": "a1ef779b5765ad529ff57698cc1ccf85",
+    "files/apps/Splunk_TA_nix.tar.gz": "5a8c6c9bb1e5509bf447e399587316f6",
+    "files/apps/pdfserver.tar.gz": "39ee8a66b5f082cebf9aa8b1c71c7fea",
+    "files/apps/sideview_utils.tar.gz": "d32137871258e52ae6ed1348b1b9b999",
+    "files/apps/splunk_monitoring.tar.gz": "225688065b6af0f5163cefed8690c880",
+    "files/apps/unix.tar.gz": "e08bd48f98ed9716ab838d574bf7f560",
+    "files/licenses/splunk10GBKadaster.license": "50781b59cfe2282617358d217cfbe485",
+    "files/rpm/splunk-5.0.2-149561-linux-2.6-x86_64.rpm": "5a1d2d40a409ce0282a55a8db1a22eb1",
+    "files/rpm/splunkforwarder-5.0.2-149561-linux-2.6-x86_64.rpm": "addf969a2aa45eb5a43dbd484db4fefb",
+    "lib/puppet/provider/lib/stanza.rb": "b8e01d0b85eae9a3a69894a14c851a14",
+    "lib/puppet/provider/splunk.rb": "0dd44f600bc8a2315bb362d3d810e139",
+    "lib/puppet/provider/splunk_app/splunk_cli.rb": "19c1c582b813625487c40393d8b72567",
+    "lib/puppet/provider/splunk_authentication_server/splunk_stanza_se.rb": "f3575065861edbb948967072692665fd",
+    "lib/puppet/provider/splunk_check_connection/port_check.rb": "1405bff9043e0fcb0e5e0abe9d7b0fdc",
+    "lib/puppet/provider/splunk_config/splunk_cli.rb": "a885f4c9a3fcfbb850fc9c73a1b88b61",
+    "lib/puppet/provider/splunk_forward_server/splunk_cli.rb": "1fda66621eb1c5f43cfd3b9cf681a8f8",
+    "lib/puppet/provider/splunk_index/splunk_cli.rb": "a2466d36286091a1e169990cae6a3d43",
+    "lib/puppet/provider/splunk_license/splunk_cli.rb": "41c9072c37fd0b685b1531faa5567b08",
+    "lib/puppet/provider/splunk_license_master/splunk_cli.rb": "809b5b6dea7bf50f34ee656edbca1265",
+    "lib/puppet/provider/splunk_login/splunk_cli.rb": "3a5fbc8e4227c8f79c2e3ee6fae43f80",
+    "lib/puppet/provider/splunk_role/stanza_file.rb": "f16a8f267e5e37cd781b8d90e13e2528",
+    "lib/puppet/provider/splunk_search_server/splunk_cli.rb": "de35746700f6168163a54ca88bb2b1a9",
+    "lib/puppet/provider/splunk_splunktcp_port/stanza_file.rb": "917d7a04387265d9a5298021b63878f6",
+    "lib/puppet/provider/splunk_stanza.rb": "4e2709f199b35ef287afb4df8d90fda2",
+    "lib/puppet/provider/splunk_stanza_se.rb": "25d1d4d5eb8b07c6b0a4f042e2eb03c6",
+    "lib/puppet/provider/splunk_tcp_port/stanza_file.rb": "68b7d942413b03ad5827e0335ae49dfc",
+    "lib/puppet/provider/splunk_udp_port/stanza_file.rb": "0c25b5adbe2ed5e90bfa752b7f01f68f",
+    "lib/puppet/type/splunk_app.rb": "29520015f8f0d8348c6c701e726d6220",
+    "lib/puppet/type/splunk_authentication_server.rb": "f8cad70745cc4d31a7cbe49a2a7ef811",
+    "lib/puppet/type/splunk_check_connection.rb": "b77062455caf1f79300e428adf3cecf3",
+    "lib/puppet/type/splunk_config.rb": "53d1247bb80b8fdde71aebbca6982db0",
+    "lib/puppet/type/splunk_forward_server.rb": "05d4de00ff0a92ca27df4f7c6682847c",
+    "lib/puppet/type/splunk_index.rb": "1552abff96ffa97be77f9043b88506dd",
+    "lib/puppet/type/splunk_license.rb": "596717f578f45f4b3f6142fd90c11730",
+    "lib/puppet/type/splunk_license_master.rb": "50b6ea8937bb4c07b2fadd26a5e0ae5d",
+    "lib/puppet/type/splunk_login.rb": "f592b26cccfb4e5945e203bebbf26fbf",
+    "lib/puppet/type/splunk_role.rb": "7f56ff5a2491899d11d170f7549ddedf",
+    "lib/puppet/type/splunk_search_server.rb": "b8eb372d63d5bc9e869c623d68ac969e",
+    "lib/puppet/type/splunk_splunktcp_port.rb": "62db085adf7bb0ca4199e4103578bc21",
+    "lib/puppet/type/splunk_tcp_port.rb": "aac9bc1db03c43eee1ca0171f6619646",
+    "lib/puppet/type/splunk_udp_port.rb": "6dda5b815e5a20fa94bb79638051adf8",
+    "manifests/client/config.pp": "bbeb539d1d5bf301c3eca6e2ee93ddd3",
+    "manifests/client/install.pp": "7a59f869c5e90dd606a57adc4aa28600",
+    "manifests/client/prereq.pp": "7cccd5f6eec469d81af5f1df5d42e0db",
+    "manifests/client/service.pp": "6b4ead8e8ca9f1c2627b22f59398776c",
+    "manifests/config.pp": "4569f902229f7780e58d5cb3939b4a94",
+    "manifests/config/all.pp": "342211c2ffcb65d0128e0304009a71d8",
+    "manifests/config/indexer.pp": "2ff3264df3eebd0b18d0634278c26de4",
+    "manifests/config/searchhead.pp": "57ba1c00bfde212ec50c658b0e596fe5",
+    "manifests/config/test.pp": "19d66dfae055c99c7e19dcfd92781138",
+    "manifests/init.pp": "f292fd7161fccb74aeb1c1f96e66c690",
+    "manifests/install.pp": "83ea1c305e888cae1ed22ac6669b59ab",
+    "manifests/params.pp": "e3850275a9377fc3a0781b543a453bbf",
+    "manifests/post_config_searchhead.pp": "b86b4d07e67f742fee497621bf28ee54",
+    "manifests/prereq.pp": "6d0c25619744e29dbace1e9215277037",
+    "manifests/service.pp": "c899b4ee38947175fdbd12bbd6ab32e1",
+    "manifests/test_config.pp": "1933a3f2aed9d3c3a57b4110823f060f",
+    "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
+    "spec/spec_helper.rb": "3ea886dd135e120afa31e0aab12e85b0",
+    "tests/init.pp": "70dad85a4a62b424a6d7dd33f7d85770"
+  },
+  "types": [
+    {
+      "parameters": [
+        {
+          "name": "name"
+        },
+        {
+          "name": "source",
+          "doc": "source file to use for app. Must be tar tar.gz or gz file"
+        },
+        {
+          "name": "tmp_fs",
+          "doc": "temporary filesystem to use for app."
+        }
+      ],
+      "properties": [
+        {
+          "name": "enabled",
+          "doc": "enable/disable app"
+        },
+        {
+          "name": "visible",
+          "doc": "app is visible/invisible to users"
+        }
+      ],
+      "providers": [
+        {
+          "name": "splunk_cli"
+        }
+      ],
+      "name": "splunk_app"
+    },
+    {
+      "parameters": [
+        {
+          "name": "host",
+          "doc": "the resolvable hostname of the authentication server"
+        },
+        {
+          "name": "authentication_file"
+        }
+      ],
+      "properties": [
+        {
+          "name": "sslenabled",
+          "doc": "should SSL be enabled ?"
+        },
+        {
+          "name": "port",
+          "doc": "portnumber to be used"
+        },
+        {
+          "name": "binddn",
+          "doc": "the DN to use to bind to the authentication server"
+        },
+        {
+          "name": "binddnpassword",
+          "doc": "the password to the bindDN"
+        },
+        {
+          "name": "userbasedn",
+          "doc": "the base dn under wich the users can be found. Multiple values can be specified as array"
+        },
+        {
+          "name": "userbasefilter",
+          "doc": "This is the LDAP search filter you wish to use when searching for users."
+        },
+        {
+          "name": "usernameattribute",
+          "doc": "This is the user entry attribute whose value is the username."
+        },
+        {
+          "name": "realnameattribute",
+          "doc": "This is the user entry attribute whose value is their real name (human readable)."
+        },
+        {
+          "name": "groupmappingattribute",
+          "doc": "This is the user entry attribute whose value is used by group entries to declare membership."
+        },
+        {
+          "name": "groupbasedn",
+          "doc": "This is the distinguished names of LDAP entries whose subtrees contain the groups."
+        },
+        {
+          "name": "groupbasefilter",
+          "doc": "The LDAP search filter Splunk uses when searching for static groups"
+        },
+        {
+          "name": "dynamicgroupfilter",
+          "doc": "The LDAP search filter Splunk uses when searching for dynamic groups"
+        },
+        {
+          "name": "dynamicmemberattribute",
+          "doc": "Only configure this if you intend to retrieve dynamic groups on your LDAP server"
+        },
+        {
+          "name": "groupnameattribute",
+          "doc": "This is the group entry attribute whose value stores the group name."
+        },
+        {
+          "name": "groupmemberattribute",
+          "doc": "This is the group entry attribute whose values are the groups members"
+        },
+        {
+          "name": "nestedgroups",
+          "doc": "Controls whether Splunk will expand nested groups using the memberof extension."
+        },
+        {
+          "name": "charset",
+          "doc": "ONLY set this for an LDAP setup that returns non-UTF-8 encoded data. LDAP is supposed to always return UTF-8 encoded\ndata (See RFC 2251), but some tools incorrectly return other encodings."
+        },
+        {
+          "name": "anonymous_referrals"
+        },
+        {
+          "name": "sizelimit",
+          "doc": "Limits the amount of entries we request in LDAP search"
+        },
+        {
+          "name": "timelimit",
+          "doc": "Limits the amount of time in seconds we will wait for an LDAP search request to complete"
+        },
+        {
+          "name": "network_timeout",
+          "doc": "Limits the amount of time a socket will poll a connection without activity"
+        }
+      ],
+      "providers": [
+        {
+          "name": "splunk_stanza_se"
+        }
+      ],
+      "name": "splunk_authentication_server"
+    },
+    {
+      "parameters": [
+        {
+          "name": "name",
+          "doc": "just a name "
+        },
+        {
+          "name": "host",
+          "doc": "the resolvable hostname server to be tested "
+        },
+        {
+          "name": "port",
+          "doc": "the resolvable hostname of the authentication server"
+        },
+        {
+          "name": "timeout"
+        }
+      ],
+      "providers": [
+        {
+          "name": "port_check"
+        }
+      ],
+      "name": "splunk_check_connection"
+    },
+    {
+      "parameters": [
+        {
+          "name": "name"
+        }
+      ],
+      "properties": [
+        {
+          "name": "datastore"
+        },
+        {
+          "name": "hostname"
+        },
+        {
+          "name": "webport",
+          "doc": "the port on wich splunk web will be responding"
+        },
+        {
+          "name": "splunkport",
+          "doc": "the splunk management port"
+        },
+        {
+          "name": "minfreemb",
+          "doc": "sets the minimum amount of free space for the splund index data dir"
+        }
+      ],
+      "providers": [
+        {
+          "name": "splunk_cli"
+        }
+      ],
+      "name": "splunk_config"
+    },
+    {
+      "parameters": [
+        {
+          "name": "servername"
+        }
+      ],
+      "properties": [
+        {
+          "name": "port",
+          "doc": "port where data is written to"
+        }
+      ],
+      "providers": [
+        {
+          "name": "splunk"
+        }
+      ],
+      "name": "splunk_forward_server"
+    },
+    {
+      "parameters": [
+        {
+          "name": "forceindexpath",
+          "doc": "force the change of index paths. This is leads to the loss of all data present in the index"
+        },
+        {
+          "name": "indexname",
+          "doc": "The name of the index"
+        }
+      ],
+      "properties": [
+        {
+          "name": "homepath"
+        },
+        {
+          "name": "coldpath",
+          "doc": "the path to the cold data"
+        },
+        {
+          "name": "thawedpath",
+          "doc": "the path to the thawed data"
+        }
+      ],
+      "providers": [
+        {
+          "name": "splunk"
+        }
+      ],
+      "name": "splunk_index"
+    },
+    {
+      "parameters": [
+        {
+          "name": "name",
+          "doc": "name of this license. This should correspond with the label found in the license file"
+        },
+        {
+          "name": "hash",
+          "doc": "license hash.. do not use"
+        },
+        {
+          "name": "source",
+          "doc": "license file to use for app. Must be splunk license file"
+        },
+        {
+          "name": "tmp_fs",
+          "doc": "temporary filesystem to use for app."
+        }
+      ],
+      "providers": [
+        {
+          "name": "splunk"
+        }
+      ],
+      "name": "splunk_license"
+    },
+    {
+      "parameters": [
+        {
+          "name": "servername"
+        },
+        {
+          "name": "port",
+          "doc": "the port the licensemaster is listening to"
+        },
+        {
+          "name": "check_connection"
+        }
+      ],
+      "providers": [
+        {
+          "name": "splunk"
+        }
+      ],
+      "name": "splunk_license_master"
+    },
+    {
+      "parameters": [
+        {
+          "name": "username",
+          "doc": "splunk admin username to use"
+        },
+        {
+          "name": "password",
+          "doc": "valid password for the splunk admin user"
+        }
+      ],
+      "providers": [
+        {
+          "name": "splunk_cli"
+        }
+      ],
+      "name": "splunk_login"
+    },
+    {
+      "parameters": [
+        {
+          "name": "role_name",
+          "doc": "name of the role to implement"
+        },
+        {
+          "name": "authentication_file",
+          "doc": "location of the authentication file, the default value is /etc/splunk/system/local/authentication.conf. This depends on the link between /etc/splunk and $SPLUNK_HOME/etc/system"
+        },
+        {
+          "name": "authorize_file",
+          "doc": "location of the authorize file, the default value is /etc/splunk/system/local/authorize.conf. This depends on the link between /etc/splunk and $SPLUNK_HOME/etc/system"
+        }
+      ],
+      "properties": [
+        {
+          "name": "role_map",
+          "doc": "ldap groups to map this role to"
+        },
+        {
+          "name": "importroles",
+          "doc": "array list of other roles and their associated capabilities that should be imported"
+        },
+        {
+          "name": "srchfilter",
+          "doc": "array list of search filters for this Role."
+        },
+        {
+          "name": "srchtimewin",
+          "doc": "Maximum time span of a search, in seconds."
+        },
+        {
+          "name": "srchdiskquota",
+          "doc": "Maximum amount of disk space (MB) that can be used by search jobs of a user that belongs to this role"
+        },
+        {
+          "name": "srchjobsquota",
+          "doc": "Maximum number of concurrently running historical searches a member of this role can have."
+        },
+        {
+          "name": "rtsrchjobsquota",
+          "doc": "Maximum number of concurrently running real-time searches a member of this role can have."
+        },
+        {
+          "name": "srchmaxtime",
+          "doc": "Maximum amount of time that searches of users from this role will be allowed to run."
+        },
+        {
+          "name": "srchindexesdefault",
+          "doc": "array of indexes to search when no index is specified"
+        },
+        {
+          "name": "srchindexesallowed",
+          "doc": "array of indexes this role is allowed to search"
+        },
+        {
+          "name": "admin_all_objects",
+          "doc": "A role with this capability has access to objects in the system (user objects, search jobs, etc.)"
+        },
+        {
+          "name": "change_authentication",
+          "doc": "Required to change authentication settings through the various authentication endpoints."
+        },
+        {
+          "name": "change_own_password",
+          "doc": "Self explanatory. Some auth systems prefer to have passwords be immutable for some users."
+        },
+        {
+          "name": "delete_by_keyword",
+          "doc": "Required to use the delete search operator. Note that this does not actually delete the raw data on disk."
+        },
+        {
+          "name": "edit_deployment_client",
+          "doc": "Self explanatory. The deployment client admin endpoint requires this cap for edit"
+        },
+        {
+          "name": "edit_deployment_server",
+          "doc": ""
+        },
+        {
+          "name": "edit_dist_peer",
+          "doc": "Required to add and edit peers for distributed search"
+        },
+        {
+          "name": "edit_forwarders",
+          "doc": "Required to edit settings for forwarding data."
+        },
+        {
+          "name": "edit_httpauths",
+          "doc": "Required to edit and end user sessions through the httpauth-tokens endpoint"
+        },
+        {
+          "name": "edit_input_defaults",
+          "doc": "Required to change the default hostname for input data in the server settings endpoint."
+        },
+        {
+          "name": "edit_monitor",
+          "doc": "Required to add inputs and edit settings for monitoring files."
+        },
+        {
+          "name": "edit_roles",
+          "doc": "Required to edit roles as well as change the mappings from users to roles."
+        },
+        {
+          "name": "edit_scripted",
+          "doc": "Required to create and edit scripted inputs."
+        },
+        {
+          "name": "edit_search_server",
+          "doc": "Required to edit general distributed search settings like timeouts, heartbeats, and blacklists"
+        },
+        {
+          "name": "edit_server",
+          "doc": "Required to edit general server settings such as the server name, log levels, etc."
+        },
+        {
+          "name": "edit_splunktcp",
+          "doc": "Required to change settings for receiving TCP input from another Splunk instance."
+        },
+        {
+          "name": "edit_splunktcp_ssl",
+          "doc": "Required to list or edit any SSL specific settings for Splunk TCP input."
+        },
+        {
+          "name": "edit_tcp",
+          "doc": "Required to change settings for receiving general TCP inputs."
+        },
+        {
+          "name": "edit_udp",
+          "doc": "Required to change settings for UDP inputs."
+        },
+        {
+          "name": "edit_user",
+          "doc": "Required to create, edit, or remove users"
+        },
+        {
+          "name": "edit_web_settings",
+          "doc": "Required to change the settings for web.conf through the system settings endpoint."
+        },
+        {
+          "name": "get_metadata",
+          "doc": "Required to change the settings for web.conf through the system settings endpoint."
+        },
+        {
+          "name": "get_typeahead",
+          "doc": "Required for typeahead. This includes the typeahead endpoint and the typeahead search processor."
+        },
+        {
+          "name": "input_file",
+          "doc": "Required for inputcsv (except for dispatch\u003dt mode) and inputlookup"
+        },
+        {
+          "name": "indexes_edit",
+          "doc": "Required to change any index settings like file size and memory limits."
+        },
+        {
+          "name": "license_tab",
+          "doc": "Required to access and change the license."
+        },
+        {
+          "name": "list_forwarders",
+          "doc": "Required to show settings for forwarding data."
+        },
+        {
+          "name": "list_httpauths",
+          "doc": "Required to list user sessions through the httpauth-tokens endpoint."
+        },
+        {
+          "name": "list_inputs",
+          "doc": "Required to view the list of various inputs."
+        },
+        {
+          "name": "output_file",
+          "doc": "Required for outputcsv (except for dispatch\u003dt mode) and outputlookup"
+        },
+        {
+          "name": "request_remote_tok",
+          "doc": "Required to get a remote authentication token"
+        },
+        {
+          "name": "rest_apps_management",
+          "doc": "Required to edit settings for entries and categories in the python remote apps handler."
+        },
+        {
+          "name": "rest_apps_view",
+          "doc": "Required to list various properties in the python remote apps handler."
+        },
+        {
+          "name": "rest_properties_get",
+          "doc": "Required to get information from the services/properties endpoint."
+        },
+        {
+          "name": "rest_properties_set",
+          "doc": "Required to edit the services/properties endpoint."
+        },
+        {
+          "name": "restart_splunkd",
+          "doc": "Required to restart Splunk through the server control handler."
+        },
+        {
+          "name": "rtsearch",
+          "doc": "Required to run a realtime search."
+        },
+        {
+          "name": "run_debug_commands",
+          "doc": "Required to run debugging commands like summarize"
+        },
+        {
+          "name": "schedule_search",
+          "doc": "Required to schedule saved searches."
+        },
+        {
+          "name": "search",
+          "doc": "Self explanatory - required to run a search."
+        },
+        {
+          "name": "use_file_operator",
+          "doc": "Required to use the file search operator."
+        }
+      ],
+      "name": "splunk_role"
+    },
+    {
+      "parameters": [
+        {
+          "name": "servername"
+        },
+        {
+          "name": "check_connection"
+        },
+        {
+          "name": "remoteuser",
+          "doc": "the username to use in communication to the remote server"
+        },
+        {
+          "name": "remotepassword",
+          "doc": "the password to use in the communication to the remote server"
+        }
+      ],
+      "properties": [
+        {
+          "name": "port",
+          "doc": "the index where the data is written to"
+        }
+      ],
+      "providers": [
+        {
+          "name": "splunk"
+        }
+      ],
+      "name": "splunk_search_server"
+    },
+    {
+      "parameters": [
+        {
+          "name": "name",
+          "doc": "the splunk uri for the port. Must look like tcp://:portnr or tcp:/\u003chostname\u003e/:portnumber"
+        }
+      ],
+      "properties": [
+        {
+          "name": "connection_host",
+          "doc": "* \"ip\" sets the host to the IP address of the system sending the data. \n    * \"dns\" sets the host to the reverse DNS entry for IP address of the system sending the data.\n    * \"none\" leaves the host as specified in inputs.conf, typically the splunk system hostname.\n    * Defaults to \"ip\"."
+        },
+        {
+          "name": "enables2sheartbeat",
+          "doc": "* This specifies the keepalive setting for the splunktcp port.\n    * This option is used to detect forwarders which may have become unavailable due to network, firewall, etc., problems.\n    * Splunk will monitor the connection for presence of heartbeat, and if the heartbeat is not seen for \n      s2sHeartbeatTimeout seconds, it will close the connection.\n    * This overrides the default value specified at the global [splunktcp] stanza."
+        },
+        {
+          "name": "s2sheartbeatTimeout",
+          "doc": "heartbeat timeout in seconds"
+        },
+        {
+          "name": "compressed",
+          "doc": "* Specifies whether receiving compressed data.\n    * If set to true, the forwarder port must also have compression turned on."
+        },
+        {
+          "name": "inputshutdowntimeout",
+          "doc": " Used during shutdown to minimize data loss when forwarders are connected to a receiver. \n      During shutdown, the tcp input processor waits for the specified number of seconds and then \n      closes any remaining open connections. If, however, all connections close before the end of \n      the timeout period, shutdown proceeds immediately, without waiting for the timeout."
+        },
+        {
+          "name": "queuesize"
+        },
+        {
+          "name": "listenonipv6"
+        },
+        {
+          "name": "acceptfrom"
+        }
+      ],
+      "name": "splunk_splunktcp_port"
+    },
+    {
+      "parameters": [
+        {
+          "name": "name",
+          "doc": "the splunk uri for the port. Must look like tcp://:portnr or tcp:/\u003chostname\u003e/:portnumber"
+        }
+      ],
+      "properties": [
+        {
+          "name": "index",
+          "doc": "the index where the data is written to"
+        },
+        {
+          "name": "source",
+          "doc": "the source of the incomming data"
+        },
+        {
+          "name": "sourcetype",
+          "doc": "the sourcetype of the incomming data"
+        },
+        {
+          "name": "connection_host",
+          "doc": "how to set the hostname data"
+        },
+        {
+          "name": "queue",
+          "doc": "how to set the hostname data"
+        },
+        {
+          "name": "queuesize",
+          "doc": "how to set the hostname data"
+        },
+        {
+          "name": "persistentqueuesize",
+          "doc": "how to set the hostname data"
+        },
+        {
+          "name": "requireheader",
+          "doc": "how to set the hostname data"
+        },
+        {
+          "name": "listenonipv6",
+          "doc": "how to set the hostname data"
+        },
+        {
+          "name": "acceptfrom",
+          "doc": "how to set the hostname data"
+        },
+        {
+          "name": "rawtcpdonetimeout",
+          "doc": "how to set the hostname data"
+        }
+      ],
+      "name": "splunk_tcp_port"
+    },
+    {
+      "parameters": [
+        {
+          "name": "name",
+          "doc": "the splunk uri for the port. Must look like tcp://:portnr or tcp:/\u003chostname\u003e/:portnumber"
+        }
+      ],
+      "properties": [
+        {
+          "name": "index",
+          "doc": "the index where the data is written to"
+        },
+        {
+          "name": "source",
+          "doc": "the source of the incomming data"
+        },
+        {
+          "name": "sourcetype",
+          "doc": "the sourcetype of the incomming data"
+        },
+        {
+          "name": "connection_host"
+        },
+        {
+          "name": "queue"
+        },
+        {
+          "name": "queuesize"
+        },
+        {
+          "name": "persistentqueuesize"
+        },
+        {
+          "name": "requireheader"
+        },
+        {
+          "name": "listenonipv6"
+        },
+        {
+          "name": "acceptfrom"
+        }
+      ],
+      "name": "splunk_udp_port"
+    }
+  ],
+  "dependencies": []
+}
