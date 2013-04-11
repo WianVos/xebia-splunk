@@ -29,7 +29,9 @@ class splunk (
   $splunk_admin_port    = "8089",
   $lvmdisks             = "none",
   $splunk_lvm_vg        = "splunkvg",
-  $splunk_lvm_lv        = "splunklv") {
+  $splunk_lvm_lv        = "splunklv",
+  $stored_configs       = true,
+  $network_interface    = $ipaddress_eth1 ) {
   # input validation
 
   # class flow definition
