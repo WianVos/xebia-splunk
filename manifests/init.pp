@@ -31,8 +31,10 @@ class splunk (
   $splunk_lvm_vg        = "splunkvg",
   $splunk_lvm_lv        = "splunklv",
   $stored_configs       = true,
-  $network_interface    = $ipaddress_eth1 ) {
+  $network_interface    = $ipaddress_eth1,
+  $splunk_lwf_port      = "10011" ) {
   # input validation
+
 
   # class flow definition
 
@@ -58,11 +60,27 @@ class splunk (
 
     }
 
+    if $stored_configs == true {
+      case $role {
+        "indexer"    : {
+          Class['Splunk::Config'] -> class { 'splunk::export::indexer': } -> class { 'splunk::import::indexer': } ~> Class['Splunk::Service'
+            ]
+        }
+        "searchhead" : {
+          Class['Splunk::Config'] -> class { 'splunk::export::searchhead': } -> class { 'splunk::import::searchhead': } ~> Class['Splunk::Service'
+            ] 
+        }
+
+      }
+    }
+
   }
 
   if $server == false {
-    class { 'splunk::client::prereq': } -> class { 'splunk::client::install': } -> class { 'splunk::client::config': } ~> class { 'splunk::client::service': } -> 
-    Class["splunk"]
-    
+    class { 'splunk::client::prereq': } -> class { 'splunk::client::install': } -> class { 'splunk::client::config': } ~> class { 'splunk::client::service'
+    : } -> Class["splunk"]
+    if $stored_configs == true {
+      Class["Splunk::Client::Config"] -> class {"splunk::import::client": } ~> CLASS["Splunk::Client::Service"]
+    }
   }
 }

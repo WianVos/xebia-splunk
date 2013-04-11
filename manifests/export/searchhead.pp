@@ -12,7 +12,6 @@ class splunk::export::searchhead (
      port => $splunk_admin_port
     }
   @@splunk_license_master { $network_interface :
-     require => Splunk_check_connection[ $network_interface ]
     }
     
 }

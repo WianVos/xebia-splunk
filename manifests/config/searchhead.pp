@@ -58,17 +58,11 @@ class splunk::config::searchhead (
     role_map => ["fuck-off2", "get_lost", "dick-head"]
   }
   
-#  splunk_search_server { "192.168.50.6":
-#    port           => $splunk_admin_port,
-#    remoteuser     => "admin",
-#    remotepassword => $admin_password
-#  }
+
    splunk_license { "Splunk Enterprise":
     source => "puppet:///modules/splunk/licenses/splunk10GBKadaster.license",
     ensure => present,
   }
   
-  Splunk_search_server <<| |>>
-  Splunk_check_connection <<| |>>
-  
+ 
 }

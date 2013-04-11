@@ -1,10 +1,7 @@
-class splunk::import::indexer (
-  $splunk_indexfs    = "${splunk::indexfs}",
-  $admin_password    = "${splunk::admin_password}",
-  $splunk_admin_port = "${splunk::splunk_admin_port}") {
+class splunk::import::searchhead () {
   #   test clause for puppet_config type/resource
   
-  Splunk_search_server <<| |>>
-  Splunk_check_connection <<| |>>
+   Splunk_search_server <<| |>>
+  
   
 }

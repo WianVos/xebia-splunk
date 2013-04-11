@@ -59,9 +59,7 @@ Puppet::Type.newtype(:splunk_search_server) do
     'admin'
   end
 
-  autorequire(:splunk_check_connection) do
-    @splunk_check_connection_resource
-  end
+  
 
   # a nasty hack i borrowed from Tim Sharpe
   def initialize(*args)
@@ -71,34 +69,10 @@ Puppet::Type.newtype(:splunk_search_server) do
       "Service[splunkd]",
     ].select { |ref| catalog.resource(ref) } unless catalog.nil?
 
-    @splunk_check_connection_resource = nil
     
-    @splunk_check_connection_resource = check_connection(args[0].to_hash[:servername],args[0].to_hash[:port]) unless args[0].to_hash[:check_connection] == false
     
   end
 
-  def check_connection(host,port)
-
-    # add a connection check to the catalog ..
-
-    
-
-    params = { :name => "#{host}/#{port} lm",
-      :host => "#{host}",
-      :ensure => "present",
-      :port => "#{port}",
-      
-    }
-
-    resource = Puppet::Type.type(:splunk_check_connection).new(params)
-    catalog = Puppet::Resource::Catalog.new
-    catalog.add_resource resource
-    catalog.apply
-
-    splunk_check_connection_resource =  "#{host}/#{port} ss"
-
-    return splunk_check_connection_resource
-
-  end
+  
 
 end
