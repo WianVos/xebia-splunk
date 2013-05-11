@@ -9,14 +9,14 @@ class splunk::config (
   splunk_app { "unix":
     source   => "puppet:///modules/splunk/apps/unix.tar.gz",
     ensure   => "present",
-    enabled  => false,
-    visible  => false,
+    enabled  => true,
+    visible  => true,
   }
 
   splunk_config { 'default':
     datastore  => $splunk_indexfs,
     hostname   => $fqdn,
-    webport    => '8005',
+    webport    => '8000',
     splunkport => "${splunk_admin_port}",
     minfreemb  => 505,
   }
