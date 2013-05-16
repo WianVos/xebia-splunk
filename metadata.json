@@ -15,6 +15,78 @@
     "files/app_test/testing.txt": "a1ef779b5765ad529ff57698cc1ccf85",
     "files/app_test/testing2.txt": "a1ef779b5765ad529ff57698cc1ccf85",
     "files/apps/Splunk_TA_nix.tar.gz": "5a8c6c9bb1e5509bf447e399587316f6",
+    "files/apps/Splunk_TA_nix/README": "ddc8355255f5d3f8ca1b49042f9fbee3",
+    "files/apps/Splunk_TA_nix/appserver/controllers/taunixsetup.py": "f09b871383dd17f5a2bd09880b1d8a53",
+    "files/apps/Splunk_TA_nix/appserver/modules/TA_Unix_FTR/TA_Unix_FTR.conf": "960f30eca2ca8364a124f6554dbcb606",
+    "files/apps/Splunk_TA_nix/appserver/modules/TA_Unix_FTR/TA_Unix_FTR.css": "d812fdccdf06a37e95266251af785d1a",
+    "files/apps/Splunk_TA_nix/appserver/modules/TA_Unix_FTR/TA_Unix_FTR.html": "92800faf89f1fe560cc528eb0a81c4cc",
+    "files/apps/Splunk_TA_nix/appserver/modules/TA_Unix_FTR/TA_Unix_FTR.js": "064fb5a67b9d39af8cdfbe46e44ad894",
+    "files/apps/Splunk_TA_nix/appserver/modules/TA_Unix_FTR/TA_Unix_FTR.py": "9743245f08e93987e22e601ef373a766",
+    "files/apps/Splunk_TA_nix/appserver/modules/TA_Unix_Iframe/TA_Unix_Iframe.conf": "08bf9bffa5c55e703520e0697608bdcc",
+    "files/apps/Splunk_TA_nix/appserver/modules/TA_Unix_Iframe/TA_Unix_Iframe.css": "689b92fc3b99ab0ee9a1e031c428dc6a",
+    "files/apps/Splunk_TA_nix/appserver/modules/TA_Unix_Iframe/TA_Unix_Iframe.html": "07c6cc3fdee769f1f0bcfd56bdd22704",
+    "files/apps/Splunk_TA_nix/appserver/modules/TA_Unix_Iframe/TA_Unix_Iframe.js": "f9796c293e09fa3d19dc07e8cca786a7",
+    "files/apps/Splunk_TA_nix/appserver/static/application.css": "7ead6ba2768a75c94bbfee3aced6bafe",
+    "files/apps/Splunk_TA_nix/appserver/static/images/icon_error.png": "2803f85a84a33028d4b1a746d2788a0c",
+    "files/apps/Splunk_TA_nix/appserver/static/ta_unix_setup.css": "f61f1860124efaa864c6269aac739531",
+    "files/apps/Splunk_TA_nix/appserver/static/ta_unix_setup.js": "815333eabf4646bf470069d507653d81",
+    "files/apps/Splunk_TA_nix/appserver/templates/setup_403.html": "1948707c1fa881cb74f1b1a2b4f5851e",
+    "files/apps/Splunk_TA_nix/appserver/templates/setup_failure.html": "8594b80a8966889da86a53d453a10ecc",
+    "files/apps/Splunk_TA_nix/appserver/templates/setup_show.html": "a1f78fdcbc67037b5240247996a3632d",
+    "files/apps/Splunk_TA_nix/appserver/templates/setup_success.html": "6f3dc2ae7ad29c54938820c0e7335e4c",
+    "files/apps/Splunk_TA_nix/bin/common.sh": "b405a79286a88e8ca6b794b180555962",
+    "files/apps/Splunk_TA_nix/bin/cpu.sh": "e4783bdb09d05e81ab74fb5b76dd2117",
+    "files/apps/Splunk_TA_nix/bin/df.sh": "d1a387bb4060ca30cd62f7d019e0e6f9",
+    "files/apps/Splunk_TA_nix/bin/hardware.sh": "149976776652b1c2f77bce9afd57a74c",
+    "files/apps/Splunk_TA_nix/bin/interfaces.sh": "0f72e60967718986fabdc7e58ed4462e",
+    "files/apps/Splunk_TA_nix/bin/iostat.sh": "7fcbdbce0c756337357b2c688c3e8853",
+    "files/apps/Splunk_TA_nix/bin/lastlog.sh": "b0c513168f2c0b154435c9b18a6202f3",
+    "files/apps/Splunk_TA_nix/bin/lsof.sh": "b662b4583baee6c5344235f052e09cd9",
+    "files/apps/Splunk_TA_nix/bin/netstat.sh": "6f24dd13ac1394b6eaff6b87c4388408",
+    "files/apps/Splunk_TA_nix/bin/openPorts.sh": "c91c093a84ccf17c890ba461f4630ee9",
+    "files/apps/Splunk_TA_nix/bin/package.sh": "d73a42768542116e3dc78995f5d5f9da",
+    "files/apps/Splunk_TA_nix/bin/protocol.sh": "7645b0266a6fa30efd879933d8f84c2f",
+    "files/apps/Splunk_TA_nix/bin/ps.sh": "367ead11391748b7c07b72412293f878",
+    "files/apps/Splunk_TA_nix/bin/rlog.sh": "ad7c07f3ed37c944e71f6393191c7374",
+    "files/apps/Splunk_TA_nix/bin/setup.sh": "b8480d65307eed10ef00209a5dd463a8",
+    "files/apps/Splunk_TA_nix/bin/ta_unix/__init__.py": "d41d8cd98f00b204e9800998ecf8427e",
+    "files/apps/Splunk_TA_nix/bin/ta_unix/__init__.pyo": "684136a28f7d7b60277ec9058030398c",
+    "files/apps/Splunk_TA_nix/bin/ta_unix/decorators.py": "e9eb230d91cfbc642bd9fa782dff46b5",
+    "files/apps/Splunk_TA_nix/bin/ta_unix/models/__init__.py": "d41d8cd98f00b204e9800998ecf8427e",
+    "files/apps/Splunk_TA_nix/bin/ta_unix/models/__init__.pyo": "97f5507aeb559839b632ee5518899d07",
+    "files/apps/Splunk_TA_nix/bin/ta_unix/models/input.py": "4e5ff2b95c9837debabb81a264aea44a",
+    "files/apps/Splunk_TA_nix/bin/ta_unix/models/input.pyo": "32c7e2f44b3f75964e729090a8511cb9",
+    "files/apps/Splunk_TA_nix/bin/time.sh": "ad8f6f45bb260656177f8466c643737d",
+    "files/apps/Splunk_TA_nix/bin/top.sh": "1e5c33fa758a71023d6a62c77afb71f2",
+    "files/apps/Splunk_TA_nix/bin/usersWithLoginPrivs.sh": "e7913a0983857346d2862dee2d4fbd59",
+    "files/apps/Splunk_TA_nix/bin/vmstat.sh": "f399b0fc26bec8373f93ff682049dcc6",
+    "files/apps/Splunk_TA_nix/bin/who.sh": "ad18f4fb5d3231dc178f938c8f8464ea",
+    "files/apps/Splunk_TA_nix/default/app.conf": "b91ba22a9928281ec1b3bb25fd231327",
+    "files/apps/Splunk_TA_nix/default/data/ui/nav/default.xml": "545291b7a0eaf46a2c7ced1dfa871e25",
+    "files/apps/Splunk_TA_nix/default/data/ui/views/setup.xml": "ff1cf3b00b3f372fd41eeb2ae036ac36",
+    "files/apps/Splunk_TA_nix/default/eventgen.conf": "ba5b8e0a26ba7f78e13a242d5365d29c",
+    "files/apps/Splunk_TA_nix/default/eventtypes.conf": "b7081f3c522bb8ffb836b0c8e1961646",
+    "files/apps/Splunk_TA_nix/default/inputs.conf": "5db21801299acd74c58a9a50e97028ad",
+    "files/apps/Splunk_TA_nix/default/macros.conf": "ef9611568e82bf64ff5aefb2c87aca5f",
+    "files/apps/Splunk_TA_nix/default/props.conf": "454ba0fb70e6964bfdf3c09cdd395fa5",
+    "files/apps/Splunk_TA_nix/default/tags.conf": "034cfb782eef54da0e69936cc5536d91",
+    "files/apps/Splunk_TA_nix/default/transforms.conf": "f748fc6978e6396783491d41bf985b94",
+    "files/apps/Splunk_TA_nix/default/web.conf": "af0c8e30e71f036672e5eb79ef717e11",
+    "files/apps/Splunk_TA_nix/lookups/README": "e2402eebb61f30ebee65b9370231c496",
+    "files/apps/Splunk_TA_nix/lookups/ksu_actions.csv": "536da4b6c5f3019c8a03a42175ebf940",
+    "files/apps/Splunk_TA_nix/lookups/nix_endpoint_change_action_lookup.csv": "8c8edf703c32f499a0e6d22357ea3af0",
+    "files/apps/Splunk_TA_nix/lookups/nix_endpoint_change_fs_notification_object_category_lookup.csv": "78a2b49839372bd4bb5ef716ccf2905f",
+    "files/apps/Splunk_TA_nix/lookups/pam_actions.csv": "407a87f0124ceab3d8099f5037d1653d",
+    "files/apps/Splunk_TA_nix/lookups/sshd_actions.csv": "64933c517a74a24ce411196caa8784dd",
+    "files/apps/Splunk_TA_nix/lookups/su_actions.csv": "5dd60c5157ed637ba008501083fa671b",
+    "files/apps/Splunk_TA_nix/lookups/sudo_actions.csv": "d6bb11790da9caf8a3ebe3562a2d0d9f",
+    "files/apps/Splunk_TA_nix/lookups/vendor_actions.csv": "a999e13ff41c588e075d6d76a0461f66",
+    "files/apps/Splunk_TA_nix/lookups/wksh_actions.csv": "e25b6620283bea17ecf9f9503c118b90",
+    "files/apps/Splunk_TA_nix/metadata/default.meta": "2de524ec569116a4a0a6c3755e1daf2e",
+    "files/apps/Splunk_TA_nix/samples/auth.nix": "e01556a4244af83ee797ce084b1430a7",
+    "files/apps/Splunk_TA_nix/samples/sample.dhcpd": "582ea2c5d62cb5768b6b2412c34343f6",
+    "files/apps/Splunk_TA_nix/samples/sample.fs_notification": "464dbbb8efaeede6d16340030e4b2680",
+    "files/apps/Splunk_TA_nix/samples/syslog.nix": "a9d169661e0eadfc063e9a9f3133c140",
     "files/apps/pdfserver.tar.gz": "39ee8a66b5f082cebf9aa8b1c71c7fea",
     "files/apps/sideview_utils.tar.gz": "d32137871258e52ae6ed1348b1b9b999",
     "files/apps/splunk_monitoring.tar.gz": "225688065b6af0f5163cefed8690c880",
@@ -22,6 +94,8 @@
     "files/licenses/splunk10GBKadaster.license": "50781b59cfe2282617358d217cfbe485",
     "files/rpm/splunk-5.0.2-149561-linux-2.6-x86_64.rpm": "5a1d2d40a409ce0282a55a8db1a22eb1",
     "files/rpm/splunkforwarder-5.0.2-149561-linux-2.6-x86_64.rpm": "addf969a2aa45eb5a43dbd484db4fefb",
+    "lib/puppet/provider/ini_setting/ruby.rb": "6f528a4f961da1a6dbf352be1a062df6",
+    "lib/puppet/provider/ini_subsetting/ruby.rb": "99991c9d3ccf54c2aa1fcacf491d0cfc",
     "lib/puppet/provider/lib/stanza.rb": "b8e01d0b85eae9a3a69894a14c851a14",
     "lib/puppet/provider/splunk.rb": "0dd44f600bc8a2315bb362d3d810e139",
     "lib/puppet/provider/splunk_app/splunk_cli.rb": "19c1c582b813625487c40393d8b72567",
@@ -30,9 +104,11 @@
     "lib/puppet/provider/splunk_config/splunk_cli.rb": "a885f4c9a3fcfbb850fc9c73a1b88b61",
     "lib/puppet/provider/splunk_forward_server/splunk_cli.rb": "1fda66621eb1c5f43cfd3b9cf681a8f8",
     "lib/puppet/provider/splunk_index/splunk_cli.rb": "a2466d36286091a1e169990cae6a3d43",
+    "lib/puppet/provider/splunk_ini_file.rb": "2f423eafc5e41dd521ac5fa6843383c8",
     "lib/puppet/provider/splunk_license/splunk_cli.rb": "41c9072c37fd0b685b1531faa5567b08",
     "lib/puppet/provider/splunk_license_master/splunk_cli.rb": "809b5b6dea7bf50f34ee656edbca1265",
     "lib/puppet/provider/splunk_login/splunk_cli.rb": "3a5fbc8e4227c8f79c2e3ee6fae43f80",
+    "lib/puppet/provider/splunk_monitor/ruby.rb": "1bf0fd51a838d9613adb5e35443a1fd8",
     "lib/puppet/provider/splunk_role/stanza_file.rb": "f16a8f267e5e37cd781b8d90e13e2528",
     "lib/puppet/provider/splunk_search_server/splunk_cli.rb": "de35746700f6168163a54ca88bb2b1a9",
     "lib/puppet/provider/splunk_splunktcp_port/stanza_file.rb": "917d7a04387265d9a5298021b63878f6",
@@ -40,6 +116,8 @@
     "lib/puppet/provider/splunk_stanza_se.rb": "25d1d4d5eb8b07c6b0a4f042e2eb03c6",
     "lib/puppet/provider/splunk_tcp_port/stanza_file.rb": "68b7d942413b03ad5827e0335ae49dfc",
     "lib/puppet/provider/splunk_udp_port/stanza_file.rb": "0c25b5adbe2ed5e90bfa752b7f01f68f",
+    "lib/puppet/type/ini_setting.rb": "afcd3f28b946b08db1b48fb189e6d8cf",
+    "lib/puppet/type/ini_subsetting.rb": "b4e6a659f461bcd274dcdf1b1c39db65",
     "lib/puppet/type/splunk_app.rb": "29520015f8f0d8348c6c701e726d6220",
     "lib/puppet/type/splunk_authentication_server.rb": "f8cad70745cc4d31a7cbe49a2a7ef811",
     "lib/puppet/type/splunk_check_connection.rb": "b77062455caf1f79300e428adf3cecf3",
@@ -49,13 +127,19 @@
     "lib/puppet/type/splunk_license.rb": "596717f578f45f4b3f6142fd90c11730",
     "lib/puppet/type/splunk_license_master.rb": "50b6ea8937bb4c07b2fadd26a5e0ae5d",
     "lib/puppet/type/splunk_login.rb": "f592b26cccfb4e5945e203bebbf26fbf",
+    "lib/puppet/type/splunk_monitor.rb": "89e3b18e2bfa67d507bb2f2e810eee1d",
     "lib/puppet/type/splunk_role.rb": "7f56ff5a2491899d11d170f7549ddedf",
+    "lib/puppet/type/splunk_savedsearch.rb": "ba5c76355f12fd000cbec2431d9d3fdd",
     "lib/puppet/type/splunk_search_server.rb": "f2b64c5248bcb3f7b69627ab599042fc",
     "lib/puppet/type/splunk_splunktcp_port.rb": "62db085adf7bb0ca4199e4103578bc21",
     "lib/puppet/type/splunk_tcp_port.rb": "aac9bc1db03c43eee1ca0171f6619646",
     "lib/puppet/type/splunk_udp_port.rb": "6dda5b815e5a20fa94bb79638051adf8",
-    "manifests/client/config.pp": "2185d6c13038fd78ecf0d88ffe1c9e66",
-    "manifests/client/install.pp": "7a59f869c5e90dd606a57adc4aa28600",
+    "lib/puppet/util/external_iterator.rb": "69ad1eb930ca6d8d6b6faea343b4a22e",
+    "lib/puppet/util/setting_value.rb": "33b061f011dca850da3e6841ea4e6637",
+    "lib/puppet/util/splunk_ini_file.rb": "11f7a9b21c9ac39daa814e08a859a912",
+    "lib/puppet/util/splunk_ini_file/section.rb": "623d2c48b21c4c0c2ba7eb4f93e1718a",
+    "manifests/client/config.pp": "0d0b384748098049814e7d771670eb42",
+    "manifests/client/install.pp": "6c52ddbe60f2be06d4307f00b428f4e3",
     "manifests/client/prereq.pp": "7cccd5f6eec469d81af5f1df5d42e0db",
     "manifests/client/service.pp": "6b4ead8e8ca9f1c2627b22f59398776c",
     "manifests/config.pp": "6602e895f845ec3db5ddb4b5dee110d8",
@@ -83,6 +167,86 @@
     "tests/init.pp": "70dad85a4a62b424a6d7dd33f7d85770"
   },
   "types": [
+    {
+      "parameters": [
+        {
+          "name": "name",
+          "doc": "An arbitrary name used as the identity of the resource."
+        },
+        {
+          "name": "section",
+          "doc": "The name of the section in the ini file in which the setting should be defined."
+        },
+        {
+          "name": "setting",
+          "doc": "The name of the setting to be defined."
+        },
+        {
+          "name": "path",
+          "doc": "The ini file Puppet will ensure contains the specified setting."
+        },
+        {
+          "name": "key_val_separator",
+          "doc": "The separator string to use between each setting name and value. Defaults to \" \u003d \", but you could use this to override e.g. whether or not the separator should include whitespace."
+        }
+      ],
+      "properties": [
+        {
+          "name": "value",
+          "doc": "The value of the setting to be defined."
+        }
+      ],
+      "providers": [
+        {
+          "name": "ruby"
+        }
+      ],
+      "name": "ini_setting"
+    },
+    {
+      "parameters": [
+        {
+          "name": "name",
+          "doc": "An arbitrary name used as the identity of the resource."
+        },
+        {
+          "name": "section",
+          "doc": "The name of the section in the ini file in which the setting should be defined."
+        },
+        {
+          "name": "setting",
+          "doc": "The name of the setting to be defined."
+        },
+        {
+          "name": "subsetting",
+          "doc": "The name of the subsetting to be defined."
+        },
+        {
+          "name": "subsetting_separator",
+          "doc": "The separator string between subsettings. Defaults to \" \""
+        },
+        {
+          "name": "path",
+          "doc": "The ini file Puppet will ensure contains the specified setting."
+        },
+        {
+          "name": "key_val_separator",
+          "doc": "The separator string to use between each setting name and value. Defaults to \" \u003d \", but you could use this to override e.g. whether or not the separator should include whitespace."
+        }
+      ],
+      "properties": [
+        {
+          "name": "value",
+          "doc": "The value of the subsetting to be defined."
+        }
+      ],
+      "providers": [
+        {
+          "name": "ruby"
+        }
+      ],
+      "name": "ini_subsetting"
+    },
     {
       "parameters": [
         {
@@ -391,6 +555,62 @@
     {
       "parameters": [
         {
+          "name": "name",
+          "doc": "monitor to manage from an apps inputs.conf file"
+        },
+        {
+          "name": "app"
+        }
+      ],
+      "properties": [
+        {
+          "name": "interval",
+          "doc": "the interval setting (applicable to script type monitors)"
+        },
+        {
+          "name": "source",
+          "doc": "the source setting for this monitor"
+        },
+        {
+          "name": "sourcetype",
+          "doc": "the sourcetype setting for this monitor"
+        },
+        {
+          "name": "index",
+          "doc": "the index setting for this monitor"
+        },
+        {
+          "name": "disabled"
+        },
+        {
+          "name": "whitelist"
+        },
+        {
+          "name": "blacklist"
+        },
+        {
+          "name": "pollperiod"
+        },
+        {
+          "name": "fullevent"
+        },
+        {
+          "name": "filesperdelay"
+        },
+        {
+          "name": "delayinmills"
+        }
+      ],
+      "providers": [
+        {
+          "name": "ruby"
+        }
+      ],
+      "name": "splunk_monitor"
+    },
+    {
+      "parameters": [
+        {
           "name": "role_name",
           "doc": "name of the role to implement"
         },
@@ -610,6 +830,18 @@
         }
       ],
       "name": "splunk_role"
+    },
+    {
+      "parameters": [
+        {
+          "name": "name",
+          "doc": "monitor to manage from an apps inputs.conf file"
+        },
+        {
+          "name": "app"
+        }
+      ],
+      "name": "splunk_savedsearch"
     },
     {
       "parameters": [

@@ -71,7 +71,7 @@ class splunk::client::install (
   file {'splunk etc link':
     path => '/etc/splunk',
     ensure => $manage_link,
-    target => "${splunk_homedir}/etc/system"
+    target => "${splunk_homedir}/etc"
   }
   
   file {'splunk var link':
