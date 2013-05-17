@@ -104,7 +104,7 @@
     "lib/puppet/provider/splunk_config/splunk_cli.rb": "a885f4c9a3fcfbb850fc9c73a1b88b61",
     "lib/puppet/provider/splunk_forward_server/splunk_cli.rb": "1fda66621eb1c5f43cfd3b9cf681a8f8",
     "lib/puppet/provider/splunk_index/splunk_cli.rb": "a2466d36286091a1e169990cae6a3d43",
-    "lib/puppet/provider/splunk_ini_file.rb": "2f423eafc5e41dd521ac5fa6843383c8",
+    "lib/puppet/provider/splunk_ini_file.rb": "aab64b4154cb23e8e31cbafb30ac2e69",
     "lib/puppet/provider/splunk_license/splunk_cli.rb": "41c9072c37fd0b685b1531faa5567b08",
     "lib/puppet/provider/splunk_license_master/splunk_cli.rb": "809b5b6dea7bf50f34ee656edbca1265",
     "lib/puppet/provider/splunk_login/splunk_cli.rb": "3a5fbc8e4227c8f79c2e3ee6fae43f80",

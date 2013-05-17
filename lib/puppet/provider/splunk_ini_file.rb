@@ -114,7 +114,7 @@ class Puppet::Provider::Splunk_ini_file  < Puppet::Provider
     mkdir("#{local_dir}") unless File.directory?(local_dir)
 
     unless File.file?(local_file)
-      touch('#{local_file}') unless File.file?(default_file)
+      touch("#{local_file}") unless File.file?(default_file)
       cp('-p',"#{default_file}", "#{local_file}") if File.file?(default_file)
       chmod('755',"#{local_file}")
     end
