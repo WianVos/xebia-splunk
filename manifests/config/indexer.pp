@@ -1,13 +1,13 @@
 class splunk::config::indexer (
-  $splunk_indexfs    = "${splunk::indexfs}",
-  $admin_password    = "${splunk::admin_password}",
-  $network_interface = "${splunk::network_interface}",
-  $splunk_admin_port = "${splunk::splunk_admin_port}",
-  $splunk_lwf_port   = "${splunk::splunk_lwf_port}") {
+  $splunk_indexfs    = $splunk::indexfs,
+  $admin_password    = $splunk::admin_password,
+  $network_interface = $splunk::network_interface,
+  $splunk_admin_port = $splunk::splunk_admin_port,
+  $splunk_lwf_port   = $splunk::splunk_lwf_port) {
   #   test clause for puppet_config type/resource
 
 
-  splunk_index { "test_index1": ensure => present }
+  splunk_index { 'test_index1': ensure => present }
 
   splunk_tcp_port { "tcp://${network_interface}:10007":
     ensure     => present,
