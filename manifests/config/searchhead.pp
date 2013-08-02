@@ -59,10 +59,10 @@ class splunk::config::searchhead (
   }
 
 
-#   splunk_license { 'Splunk Enterprise':
-#    ensure => present,
-#    source => 'puppet:///modules/splunk/licenses/splunk10GBKadaster.license',
-#  }
+   splunk_license { 'Splunk Enterprise':
+    ensure => present,
+    source => 'puppet:///modules/splunk/licenses/splunk10GBKadaster.license',
+  }
 
 
 }
