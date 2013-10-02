@@ -5,7 +5,6 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..','provider/lib/st
 class Puppet::Provider::Splunk_stanza_se < Puppet::Provider
   def initialize(value)
     super(value)
-
     @dictionary = self.class.dictionary
     @config_file = self.class.config_file
     @stanza = Stanza.new(@config_file)
@@ -45,7 +44,6 @@ class Puppet::Provider::Splunk_stanza_se < Puppet::Provider
 
                           end
                          }
-
     end
 
   end
@@ -76,7 +74,7 @@ class Puppet::Provider::Splunk_stanza_se < Puppet::Provider
   def get_options_add_hash
     # init the hash
     property_hash = {}
-
+    p resource
     # loop over the resource hash
     resource.to_hash.each do |key, value|
 

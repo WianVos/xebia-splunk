@@ -5,14 +5,7 @@ class splunk::config::searchhead (
   #   test clause for puppet_config type/resource
 
 
-  if !defined(Splunk_app['Sideview_utils']) {
-    splunk_app { 'sideview_utils':
-      ensure   => 'present',
-      source   => 'puppet:///modules/splunk/apps/sideview_utils.tar.gz',
-      enabled  => true,
-      visible  => true,
-    }
-  }
+  
 
   #
   splunk_authentication_server { 'testldap':

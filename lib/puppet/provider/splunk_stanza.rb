@@ -67,7 +67,7 @@ class Puppet::Provider::Splunk_stanza < Puppet::Provider
         }
         
         properties.each do |key, value|
-          propname = dictionary.index("#{key}").to_sym
+          propname = dictionary.key("#{key}").to_sym
           option = { propname => value}
           options = options.merge!(option)
         end

@@ -11,7 +11,7 @@
 # Sample Usage:
 #
 class splunk (
-  $version              = '5.0.2-149561',
+  $version              = '6.0-182037',
   $enable               = true,
   $start                = true,
   $homedir              = '/opt/splunk',
@@ -21,8 +21,6 @@ class splunk (
   $group                = 'splunk',
   $user                 = 'splunk',
   $installtype          = 'rpm',
-  $installsource        = 'puppet:///modules/splunk/rpm/splunk-5.0.2-149561-linux-2.6-x86_64.rpm',
-  $client_installsource = 'puppet:///modules/splunk/rpm/splunkforwarder-5.0.2-149561-linux-2.6-x86_64.rpm',
   $admin_password       = 'test123',
   $role                 = 'all',
   $server               = true,
@@ -32,15 +30,24 @@ class splunk (
   $splunk_lvm_lv        = 'splunklv',
   $stored_configs       = true,
   $network_interface    = $ipaddress_eth1,
-  $splunk_lwf_port      = '10011' ) {
+  $splunk_lwf_port      = '10011',
+  $installsource        = "puppet:///modules/splunk/rpm/splunk-6.0-182037-linux-2.6-x86_64.rpm",
+  $client_installsource = "puppet:///modules/splunk/rpm/splunkforwarder-6.0-182037-linux-2.6-x86_64.rpm",
+  ) {
+  
   # input validation
-
+  validate_ipv4_address($network_interface)
+  # anchors
+  anchor{'splunk::begin':}
+  anchor{'splunk::end':}
 
   # class flow definition
 
+
+
   if $server == true {
-    class { 'splunk::prereq': } -> class { 'splunk::install': } -> class { 'splunk::config': } ~> class { 'splunk::service': } ->
-    Class['splunk']
+    Anchor['splunk::begin'] -> class { 'splunk::prereq': } -> class { 'splunk::install': } -> class { 'splunk::config': } ~> class { 'splunk::service': } ->
+    Anchor['splunk::end']
 
     # add to the flow depending on the role
     case $role {
@@ -77,10 +84,10 @@ class splunk (
   }
 
   if $server == false {
-    class { 'splunk::client::prereq': } -> class { 'splunk::client::install': } -> class { 'splunk::client::config': } ~> class { 'splunk::client::service'
-    : } -> Class['splunk']
+    Anchor['splunk::begin'] -> class { 'splunk::client::prereq': } -> class { 'splunk::client::install': } ~> class { 'splunk::client::service'
+    : } -> Anchor['splunk::end'] 
     if $stored_configs == true {
-      Class['Splunk::Client::Config'] -> class {'splunk::import::client': } ~> CLASS['Splunk::Client::Service']
+      Class['Splunk::Client::Install'] -> class {'splunk::import::client': } ~> CLASS['Splunk::Client::Service']
     }
   }
 }

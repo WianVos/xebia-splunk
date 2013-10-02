@@ -9,7 +9,6 @@ class Stanza
   end
 
   def get_stanza()
-
     # check if the file exists .. and if not return a somewhat empty string
 
     if File.exists?("#{@filename}")
@@ -17,8 +16,7 @@ class Stanza
     else
       file = ""
     end
-
-    file.each do |line|
+    file.each_line do |line|
       if line.include? '['
         @hash_name = line.delete('[]').strip
         @Stanza_hash["#{@hash_name}"] = Hash.new
