@@ -1,0 +1,5 @@
+---
+"./files/rpm/splunk-6.0-182037-linux-2.6-x86_64.rpm":
+  download_url: 'http://www.splunk.com/page/download_track?file=6.0/splunk/linux/splunk-6.0-182037-linux-2.6-x86_64.rpm&ac=&wget=true&name=wget&typed=releases&elq=a4fa9244-e9dd-4541-9830-515cfd0b723f'
+"./files/rpm/splunkforwarder-6.0-182037-linux-2.6-x86_64.rpm":
+  download_url: 'http://www.splunk.com/page/download_track?file=6.0/universalforwarder/linux/splunkforwarder-6.0-182037-linux-2.6-x86_64.rpm&ac=&wget=true&name=wget&typed=releases&elq=a4fa9244-e9dd-4541-9830-515cfd0b723f'
