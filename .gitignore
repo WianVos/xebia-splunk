@@ -2,4 +2,5 @@ files/licenses/splunk10GBKadaster.license
 *.tar.gz
 *.rpm
 *.DS*
-
+*.lock
+*.log
