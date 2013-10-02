@@ -25,9 +25,6 @@ class splunk (
   $role                 = 'all',
   $server               = true,
   $splunk_admin_port    = '8089',
-  $lvmdisks             = 'none',
-  $splunk_lvm_vg        = 'splunkvg',
-  $splunk_lvm_lv        = 'splunklv',
   $stored_configs       = true,
   $network_interface    = $ipaddress_eth1,
   $splunk_lwf_port      = '10011',
@@ -36,6 +33,11 @@ class splunk (
   ) {
   
   # input validation
+  validate_string($version)
+  validate_string($group)
+  validate_string($user)
+  validate_string($admin_password)
+
   validate_ipv4_address($network_interface)
   # anchors
   anchor{'splunk::begin':}
