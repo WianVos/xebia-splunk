@@ -24,12 +24,11 @@ class splunk (
   $admin_password       = 'test123',
   $role                 = 'all',
   $server               = true,
-  $splunk_admin_port    = '8089',
+  $splunk_admin_port    = 8089,
+  $splunk_web_port      = 8000,
   $stored_configs       = true,
   $network_interface    = $ipaddress_eth1,
-  $splunk_lwf_port      = '10011',
-  $installsource        = "puppet:///modules/splunk/rpm/splunk-6.0-182037-linux-2.6-x86_64.rpm",
-  $client_installsource = "puppet:///modules/splunk/rpm/splunkforwarder-6.0-182037-linux-2.6-x86_64.rpm",
+  $splunk_lwf_port      = '10011'
   ) {
   
   # input validation
@@ -38,7 +37,19 @@ class splunk (
   validate_string($user)
   validate_string($admin_password)
 
+  validate_portnumber($splunk_admin_port,$splunk_web_port)
+
+
+  validate_absolute_path($homedir)
+  validate_absolute_path($indexfs)
+
+
   validate_ipv4_address($network_interface)
+
+  # composed variables
+  $installsource        = "puppet:///modules/splunk/rpm/splunk-${version}-linux-2.6-x86_64.rpm"
+  $client_installsource = "puppet:///modules/splunk/rpm/splunkforwarder-${version}-linux-2.6-x86_64.rpm"
+  
   # anchors
   anchor{'splunk::begin':}
   anchor{'splunk::end':}
@@ -63,10 +74,6 @@ class splunk (
         Class['Splunk::Config'] -> class { 'splunk::config::searchhead': } ~> Class['Splunk::Service'] -> class { 'splunk::post_config_searchhead'
         : }
       }
-      'test'       : {
-        Class['Splunk::Config'] -> class { 'splunk::config::test': } ~> Class['Splunk::Service']
-      }
-
     }
 
     if $stored_configs == true {

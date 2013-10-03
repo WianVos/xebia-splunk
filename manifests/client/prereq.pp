@@ -1,10 +1,13 @@
 class splunk::client::prereq (
   $lvm            = $splunk::lvm,
-  $splunk_homedir = "${splunk::homedir}forwarder",
   $ensure         = $splunk::ensure,
   $user           = $splunk::user,
   $group          = $splunk::group,
   $admin_password = $splunk::admin_password) {
+
+  # variable setting
+  $splunk_homedir = "${splunk::homedir}forwarder"
+  
   # flow
   Group['splunk group'] -> User['splunk user'] -> File['splunk homedirectory'] -> File['splunk password file'
     ]

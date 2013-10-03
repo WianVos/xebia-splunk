@@ -1,4 +1,4 @@
-name 'xebia-splunk'
+name 'splunk'
 version '1.0.0.0'
 
 author 'wianvos'

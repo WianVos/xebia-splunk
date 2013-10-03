@@ -3,13 +3,14 @@ class splunk::client::install (
   $installtype    = $splunk::installtype,
   $installsource  = $splunk::client_installsource,
   $ensure         = $splunk::ensure,
-  $splunk_homedir = "${splunk::homedir}forwarder",
-  $admin_password = $splunk::admin_password) {
+  $admin_password = $splunk::admin_password ) {
     # input validation
 
 
   # variable setting
 
+  $splunk_homedir = "${splunk::homedir}forwarder"
+  
   $manage_package = $ensure ? {
     absent  => 'absent',
     default => 'present'
