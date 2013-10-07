@@ -46,11 +46,12 @@ class splunk (
 
   validate_ipv4_address($network_interface)
 
-  case $install_type {
+  case $installtype {
     'rpm'   : {}
     'repo'  : {}
-    default : {fail("invalid installtype found ${install_type}")}
+    default : {fail("invalid installtype found ${installtype}")}
   }
+
   # composed variables
   $installsource        = "puppet:///modules/splunk/rpm/splunk-${version}-linux-2.6-x86_64.rpm"
   $client_installsource = "puppet:///modules/splunk/rpm/splunkforwarder-${version}-linux-2.6-x86_64.rpm"

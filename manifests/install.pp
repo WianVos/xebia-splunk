@@ -11,11 +11,6 @@ class splunk::install (
 
   # variable setting
 
-  $manage_package = $ensure ? {
-    absent  => 'absent',
-    default => 'present'
-  }
-
   $manage_link = $ensure ?{
     absent => 'absent',
     default => 'link'
@@ -35,14 +30,19 @@ class splunk::install (
       }
 
       package { 'splunk':
-        ensure   => $manage_package,
+        ensure   => present,
         provider => rpm,
         source   => "/var/tmp/splunk-${version}-linux-2.6-x86_64.rpm",
         require  => File['splunk rpm']
       }
     }
-      default : {
-        package { 'splunk': ensure => $manage_package, }
+    'repo'    : {
+      package { 'splunk':
+        ensure   => present,
+      }
+    }
+    default : {
+      package { 'splunk': ensure => present, }
     }
   }
 

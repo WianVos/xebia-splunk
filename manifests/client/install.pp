@@ -13,11 +13,6 @@ class splunk::client::install (
 
   $splunk_homedir = "${splunk::homedir}forwarder"
 
-  $manage_package = $ensure ? {
-    absent  => 'absent',
-    default => 'present'
-  }
-
   $manage_link = $ensure ?{
     absent => 'absent',
     default => 'link'
@@ -30,7 +25,7 @@ class splunk::client::install (
   # rpm installation should be removed after vagrant development fase (it's just that ugly)
 
   case $installtype {
-    'rpm'     : {
+    'rpm'  : {
       file { 'splunkforwarder rpm':
         source => $installsource,
         path   => "/var/tmp/splunkforwarder-${version}-linux-2.6-x86_64.rpm"
@@ -43,8 +38,13 @@ class splunk::client::install (
         require  => File['splunkforwarder rpm']
       }
     }
+    'repo' : {
+      package { 'splunkforwarder':
+        ensure   => present,
+      }
+    }
     default : {
-      package { 'splunkforwarder': ensure => $manage_package, }
+      package { 'splunkforwarder': ensure => present, }
     }
   }
 
