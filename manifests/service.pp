@@ -1,3 +1,4 @@
+# service class for splunk server installations
 class splunk::service ($ensure = $splunk::ensure,) {
   # input validation
 

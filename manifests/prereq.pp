@@ -1,3 +1,5 @@
+# class splunk::prereq
+# installs the prerequisites for a splunk server
 class splunk::prereq (
   $lvm            = $splunk::lvm,
   $splunk_indexfs = $splunk::indexfs,
@@ -15,30 +17,20 @@ class splunk::prereq (
   ## dependant flow
 
   # if the osfamily is redhat .. we need to shutdown iptables.
-  if $osfamily == 'RedHat'  {
+  if $::osfamily == 'RedHat'  {
     File['splunk data filesystem'] -> Service['iptables'] -> File ['splunk password file']
   }
   # ensurable
 
-  $manage_directory = $ensure ? {
-    absent  => 'absent',
-    default => 'directory'
-  }
-
-  $manage_user = $ensure ? {
-    absent  => 'absent',
-    default => 'present'
-  }
-
   # create users
 
   group { 'splunk group':
-    ensure => $manage_user,
+    ensure => present,
     name   => $group,
   }
 
   user { 'splunk user':
-    ensure     => $manage_user,
+    ensure     => present,
     name       => $group,
     managehome => false,
     gid        => $group,
@@ -49,7 +41,7 @@ class splunk::prereq (
   # splunk homedir where the package will be installed
 
   file { 'splunk homedirectory':
-    ensure => $manage_directory,
+    ensure => directory,
     path   => $splunk_homedir,
     owner  => $user,
     group  => $group
@@ -58,7 +50,7 @@ class splunk::prereq (
   # splunk index filesystem
 
   file { 'splunk data filesystem':
-    ensure => $manage_directory,
+    ensure => directory,
     path   => $splunk_indexfs,
     owner  => $user,
     group  => $group
@@ -72,16 +64,16 @@ class splunk::prereq (
 
   # disable iptables on centos and redhat
 
- service { 'iptables':
+  service { 'iptables':
     ensure => stopped,
     enable => false }
 
 
   # put the splunk username and password in a protected file for use with facter's custom facts.
   file { 'splunk password file':
-    path => '/root/.rc_splunk.txt',
+    path    => '/root/.rc_splunk.txt',
     content => $admin_password,
-    mode => 0666,
-    owner => root
+    mode    => '0666',
+    owner   => root
   }
 }

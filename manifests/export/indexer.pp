@@ -1,3 +1,4 @@
+# this class exports resources for others to be imported
 class splunk::export::indexer (
   $splunk_indexfs    = $splunk::indexfs,
   $admin_password    = $splunk::admin_password,

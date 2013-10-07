@@ -30,7 +30,7 @@ class splunk (
   $network_interface    = $ipaddress_eth1,
   $splunk_lwf_port      = '10011'
   ) {
-  
+
   # input validation
   validate_string($version)
   validate_string($group)
@@ -49,7 +49,7 @@ class splunk (
   # composed variables
   $installsource        = "puppet:///modules/splunk/rpm/splunk-${version}-linux-2.6-x86_64.rpm"
   $client_installsource = "puppet:///modules/splunk/rpm/splunkforwarder-${version}-linux-2.6-x86_64.rpm"
-  
+
   # anchors
   anchor{'splunk::begin':}
   anchor{'splunk::end':}
@@ -59,44 +59,33 @@ class splunk (
 
 
   if $server == true {
-    Anchor['splunk::begin'] -> class { 'splunk::prereq': } -> class { 'splunk::install': } -> class { 'splunk::config': } ~> class { 'splunk::service': } ->
-    Anchor['splunk::end']
+    Anchor['splunk::begin']
+    -> class { 'splunk::prereq': }
+    -> class { 'splunk::install': }
+    -> class { 'splunk::config': }
+    ~> class { 'splunk::service': }
+    -> Anchor['splunk::end']
 
     # add to the flow depending on the role
     case $role {
-      'all'        : {
-        Class['Splunk::Config'] -> class { 'splunk::config::all': } ~> Class['Splunk::Service']
-      }
-      'indexer'    : {
-        Class['Splunk::Config'] -> class { 'splunk::config::indexer': } ~> Class['Splunk::Service']
-      }
-      'searchhead' : {
-        Class['Splunk::Config'] -> class { 'splunk::config::searchhead': } ~> Class['Splunk::Service'] -> class { 'splunk::post_config_searchhead'
-        : }
-      }
+      'all'        : {Class['Splunk::Config'] -> class { 'splunk::config::all': } ~> Class['Splunk::Service']}
+      'indexer'    : {Class['Splunk::Config'] -> class { 'splunk::config::indexer': } ~> Class['Splunk::Service']}
+      'searchhead' : {Class['Splunk::Config'] -> class { 'splunk::config::searchhead': } ~> Class['Splunk::Service'] -> class { 'splunk::post_config_searchhead':}}
+      default      : { fail('role parameter contains a value not supported by this module')}
     }
 
     if $stored_configs == true {
       case $role {
-        'indexer'    : {
-          Class['Splunk::Config'] -> class { 'splunk::export::indexer': } -> class { 'splunk::import::indexer': } ~> Class['Splunk::Service'
-            ]
+        'indexer'    : {Class['Splunk::Config'] -> class { 'splunk::export::indexer': } -> class { 'splunk::import::indexer': } ~> Class['Splunk::Service']}
+        'searchhead' : {Class['Splunk::Config'] -> class { 'splunk::export::searchhead': } -> class { 'splunk::import::searchhead': } ~> Class['Splunk::Service']}
+        default      : { fail('role parameter contains a value not supported by this module')}
         }
-        'searchhead' : {
-          Class['Splunk::Config'] -> class { 'splunk::export::searchhead': } -> class { 'splunk::import::searchhead': } ~> Class['Splunk::Service'
-            ]
-        }
-
       }
     }
 
-  }
 
   if $server == false {
-    Anchor['splunk::begin'] -> class { 'splunk::client::prereq': } -> class { 'splunk::client::install': } ~> class { 'splunk::client::service'
-    : } -> Anchor['splunk::end'] 
-    if $stored_configs == true {
-      Class['Splunk::Client::Install'] -> class {'splunk::import::client': } ~> CLASS['Splunk::Client::Service']
-    }
+    Anchor['splunk::begin'] -> class { 'splunk::client::prereq': } -> class { 'splunk::client::install': } ~> class { 'splunk::client::service': } -> Anchor['splunk::end']
+    if $stored_configs == true {Class['Splunk::Client::Install'] -> class {'splunk::import::client': } ~> Class['Splunk::Client::Service']}
   }
 }

@@ -1,3 +1,4 @@
+# splunk::install
 class splunk::install (
   $version        = $splunk::version,
   $installtype    = $splunk::installtype,
@@ -40,8 +41,8 @@ class splunk::install (
         require  => File['splunk rpm']
       }
     }
-    'default' : {
-      package { 'splunk': ensure => $manage_package, }
+      default : {
+        package { 'splunk': ensure => $manage_package, }
     }
   }
 
@@ -63,20 +64,20 @@ class splunk::install (
   #setup a /usr/sbin link for the splunk command
   file {'splunk sbin link':
     ensure => $manage_link,
-    path => '/usr/sbin/splunk',
+    path   => '/usr/sbin/splunk',
     target => "${splunk_homedir}/bin/splunk"
   }
 
   #setup a link to /etc/splunk for correct functioning of custom resources
   file {'splunk etc link':
     ensure => $manage_link,
-    path => '/etc/splunk',
+    path   => '/etc/splunk',
     target => "${splunk_homedir}/etc"
   }
 
   file {'splunk var link':
     ensure => $manage_link,
-    path => '/var/splunk',
+    path   => '/var/splunk',
     target => "${splunk_homedir}/var"
   }
 

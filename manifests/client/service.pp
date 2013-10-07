@@ -1,15 +1,7 @@
-class splunk::client::service ($ensure = $splunk::ensure,) {
-  # input validation
+#class splunk::client::service
+# the class around the splunk service
+class splunk::client::service () {
 
-
-  # setting the correct variables
-  $manage_service = $ensure ? {
-    'absent' => 'absent',
-    default  => 'running',
-  }
-
-  # flow control
-
-  service { 'splunk': ensure => $manage_service, hasrestart => true }
+service { 'splunk': ensure => running, hasrestart => true }
 
 }

@@ -1,3 +1,5 @@
+# Class: splunk::client::install
+# installs the splunk universal forwarder on a splunk client machine
 class splunk::client::install (
   $version        = $splunk::version,
   $installtype    = $splunk::installtype,
@@ -10,7 +12,7 @@ class splunk::client::install (
   # variable setting
 
   $splunk_homedir = "${splunk::homedir}forwarder"
-  
+
   $manage_package = $ensure ? {
     absent  => 'absent',
     default => 'present'
@@ -35,13 +37,13 @@ class splunk::client::install (
       }
 
       package { 'splunkforwarder':
-        ensure => present,
+        ensure   => present,
         provider => rpm,
         source   => "/var/tmp/splunkforwarder-${version}-linux-2.6-x86_64.rpm",
         require  => File['splunkforwarder rpm']
       }
     }
-    'default' : {
+    default : {
       package { 'splunkforwarder': ensure => $manage_package, }
     }
   }
@@ -64,21 +66,21 @@ class splunk::client::install (
   #setup a /usr/sbin link for the splunk command
   file {'splunk sbin link':
     ensure => $manage_link,
-    path => '/usr/sbin/splunk',
+    path   => '/usr/sbin/splunk',
     target => "${splunk_homedir}/bin/splunk"
   }
 
   #setup a link to /etc/splunk for correct functioning of custom resources
   file {'splunk etc link':
     ensure => $manage_link,
-    path => '/etc/splunk',
+    path   => '/etc/splunk',
     target => "${splunk_homedir}/etc"
   }
 
   file {'splunk var link':
     ensure => $manage_link,
-    path => '/var/splunk',
+    path   => '/var/splunk',
     target => "${splunk_homedir}/var"
   }
 
-  }
+}

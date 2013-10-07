@@ -6,7 +6,6 @@ define splunk::resources::splunk_license_master (
 
 
   splunk_check_connection { "splunk_license_master ${network_interface}": port => $splunk_admin_port } ->   splunk_license_master { $network_interface:}
-  
 
 
 }

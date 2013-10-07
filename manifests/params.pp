@@ -1,8 +1,4 @@
+#class splunk::params
 class splunk::params{
-  
-  
-  #input validation
-  
-  
-  
+
 }
