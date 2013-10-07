@@ -11,24 +11,25 @@
 # Sample Usage:
 #
 class splunk (
-  $version              = '6.0-182037',
-  $enable               = true,
-  $start                = true,
-  $homedir              = '/opt/splunk',
-  $indexfs              = '/var/splunkdata',
-  $lvm                  = false,
-  $ensure               = present,
-  $group                = 'splunk',
-  $user                 = 'splunk',
-  $installtype          = 'rpm',
-  $admin_password       = 'test123',
-  $role                 = 'all',
-  $server               = true,
-  $splunk_admin_port    = 8089,
-  $splunk_web_port      = 8000,
-  $stored_configs       = true,
-  $network_interface    = $ipaddress_eth1,
-  $splunk_lwf_port      = '10011'
+  $version                = '6.0-182037',
+  $enable                 = true,
+  $start                  = true,
+  $homedir                = '/opt/splunk',
+  $indexfs                = '/var/splunkdata',
+  $lvm                    = false,
+  $ensure                 = present,
+  $group                  = 'splunk',
+  $user                   = 'splunk',
+  $installtype            = 'rpm',
+  $admin_password         = 'test123',
+  $role                   = 'all',
+  $server                 = true,
+  $splunk_admin_port      = 8089,
+  $splunk_web_port        = 8000,
+  $stored_configs         = true,
+  $network_interface      = $ipaddress_eth1,
+  $splunk_lwf_port        = '10011',
+  $splunk_indexer_indexes = undef,
   ) {
 
   # input validation
@@ -45,7 +46,12 @@ class splunk (
 
 
   validate_ipv4_address($network_interface)
-
+  
+  if $indexes != undef {
+    validate_array($indexes)
+    validate_hash($indexes[3])
+  }
+  
   case $installtype {
     'rpm'   : {}
     'repo'  : {}
