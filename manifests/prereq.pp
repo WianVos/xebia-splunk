@@ -2,12 +2,12 @@
 # installs the prerequisites for a splunk server
 class splunk::prereq (
   $lvm            = $splunk::lvm,
-  $splunk_indexfs = $splunk::indexfs,
-  $splunk_homedir = $splunk::homedir,
+  $splunk_indexfs = $splunk::splk_indexer_indexfs,
+  $splunk_homedir = $splunk::splk_homedir,
   $ensure         = $splunk::ensure,
-  $user           = $splunk::user,
-  $group          = $splunk::group,
-  $admin_password = $splunk::admin_password) {
+  $splk_user           = $splunk::user,
+  $splk_group     = $splunk::splk_group,
+  $splk_admin_password = $splunk::splk_admin_password) {
   # input validation
 
 
@@ -26,14 +26,14 @@ class splunk::prereq (
 
   group { 'splunk group':
     ensure => present,
-    name   => $group,
+    name   => $splk_group,
   }
 
   user { 'splunk user':
     ensure     => present,
-    name       => $group,
+    name       => $splk_group,
     managehome => false,
-    gid        => $group,
+    gid        => $splk_group,
   }
 
   # create directory's
@@ -43,8 +43,8 @@ class splunk::prereq (
   file { 'splunk homedirectory':
     ensure => directory,
     path   => $splunk_homedir,
-    owner  => $user,
-    group  => $group
+    owner  => $splk_user,
+    group  => $splk_group
   }
 
   # splunk index filesystem
@@ -52,8 +52,8 @@ class splunk::prereq (
   file { 'splunk data filesystem':
     ensure => directory,
     path   => $splunk_indexfs,
-    owner  => $user,
-    group  => $group
+    owner  => $splk_user,
+    group  => $splk_group
   }
 
   # Initialize lvm is needed
@@ -72,7 +72,7 @@ class splunk::prereq (
   # put the splunk username and password in a protected file for use with facter's custom facts.
   file { 'splunk password file':
     path    => '/root/.rc_splunk.txt',
-    content => $admin_password,
+    content => $splk_admin_password,
     mode    => '0666',
     owner   => root
   }

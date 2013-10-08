@@ -1,21 +1,22 @@
 # this class exports resources for others to be imported
 class splunk::export::indexer (
-  $splunk_indexfs    = $splunk::indexfs,
-  $admin_password    = $splunk::admin_password,
-  $network_interface = $splunk::network_interface,
-  $splunk_admin_port = $splunk::splunk_admin_port,
-  $splunk_lwf_port   = $splunk::splunk_lwf_port ) {
+  $splunk_indexfs    = $splunk::splk_indexer_indexfs,
+  $splk_admin_password    = $splunk::splk_admin_password,
+  $splk_network_interface = $splunk::splk_network_interface,
+  $splk_adminport = $splunk::splk_adminport,
+  $splk_lwf_port   = $splunk::splk_lwf_port ) {
   #   test clause for puppet_config type/resource
 
-  @@splunk_check_connection{$network_interface:
-    port => $splunk_admin_port
+  @@splunk_check_connection{$splk_network_interface:
+    port => $splk_adminport
   }
-  @@splunk_search_server { $network_interface:
-    port           => $splunk_admin_port,
+  
+  @@splunk_search_server { $splk_network_interface:
+    port           => $splk_adminport,
     remoteuser     => 'admin',
-    remotepassword => $admin_password
+    remotepassword => $splk_admin_password
   }
 
-  @@splunk_forward_server { $network_interface: port => $splunk_lwf_port }
+  @@splunk_forward_server { $splk_network_interface: port => $splk_lwf_port }
 
 }

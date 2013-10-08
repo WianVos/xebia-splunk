@@ -64,13 +64,12 @@ Puppet::Type.type(:splunk_index).provide(:splunk, :parent => Puppet::Provider::S
   end
   
   def homepath=(value)
-    p  
-    self.debug "coldPath needs a change"
+    self.debug "homePath needs a change"
     @property_flush[:index_move_home] = :true
   end
   
   def thawedpath=(value)
-    self.debug "coldPath needs a change"
+    self.debug "thawdPath needs a change"
     @property_flush[:index_move_thawed] = :true
   end
   

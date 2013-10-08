@@ -11,57 +11,32 @@
 # Sample Usage:
 #
 class splunk (
-  $version                = '6.0-182037',
-  $enable                 = true,
-  $start                  = true,
-  $homedir                = '/opt/splunk',
-  $indexfs                = '/var/splunkdata',
-  $lvm                    = false,
-  $ensure                 = present,
-  $group                  = 'splunk',
-  $user                   = 'splunk',
-  $installtype            = 'rpm',
-  $admin_password         = 'test123',
-  $role                   = 'all',
-  $server                 = true,
-  $splunk_admin_port      = 8089,
-  $splunk_web_port        = 8000,
-  $stored_configs         = true,
-  $network_interface      = $ipaddress_eth1,
-  $splunk_lwf_port        = '10011',
-  $splunk_indexer_indexes = undef,
-  ) {
+  $installtype                   = $splunk::params::installtype,
+  $role                          = $splunk::params::role,
+  $server                        = $splunk::params::server,
+  $stored_configs                = $splunk::params::stored_configs,
+  $splk_version                  = $splunk::params::splk_version,
+  $splk_homedir                  = $splunk::params::splk_homedir,
+  $splk_indexer_indexfs          = $splunk::params::splk_indexer_indexfs,
+  $splk_group                    = $splunk::params::splk_group,
+  $splk_installsource            = $splunk::params::splk_installsource,
+  $splk_client_installsource     = $splunk::params::splk_client_installsource,
+  $splk_user                     = $splunk::params::splk_user,
+  $splk_admin_password           = $splunk::params::splk_admin_password,
+  $splk_adminport                = $splunk::params::splk_adminport,
+  $splk_webport                  = $splunk::params::splk_webport,
+  $splk_network_interface        = $splunk::params::splk_network_interface,
+  $splk_lwf_port                 = $splunk::params::splk_lwf_port,
+  $splk_indexer_indexes          = {},
+  $splk_indexer_tcpports         = {},
+  $splk_indexer_udpports         = {},
+  $splk_indexer_splunktcpports   = {},
+  ) inherits splunk::params {
 
-  # input validation
-  validate_string($version)
-  validate_string($group)
-  validate_string($user)
-  validate_string($admin_password)
+  # include various validation checks here
+  include splunk::validation
 
-  validate_portnumber($splunk_admin_port,$splunk_web_port)
-
-
-  validate_absolute_path($homedir)
-  validate_absolute_path($indexfs)
-
-
-  validate_ipv4_address($network_interface)
   
-  if $indexes != undef {
-    validate_array($indexes)
-    validate_hash($indexes[3])
-  }
-  
-  case $installtype {
-    'rpm'   : {}
-    'repo'  : {}
-    default : {fail("invalid installtype found ${installtype}")}
-  }
-
-  # composed variables
-  $installsource        = "puppet:///modules/splunk/rpm/splunk-${version}-linux-2.6-x86_64.rpm"
-  $client_installsource = "puppet:///modules/splunk/rpm/splunkforwarder-${version}-linux-2.6-x86_64.rpm"
-
   # anchors
   anchor{'splunk::begin':}
   anchor{'splunk::end':}

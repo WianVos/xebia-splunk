@@ -1,5 +1,4 @@
---format
-s
+--format documentation
 --colour
 --loadby
 mtime

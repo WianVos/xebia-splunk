@@ -3,12 +3,12 @@
 class splunk::client::prereq (
   $lvm            = $splunk::lvm,
   $ensure         = $splunk::ensure,
-  $user           = $splunk::user,
-  $group          = $splunk::group,
-  $admin_password = $splunk::admin_password) {
+  $splk_user           = $splunk::user,
+  $splk_group          = $splunk::splk_group,
+  $splk_admin_password = $splunk::splk_admin_password) {
 
   # variable setting
-  $splunk_homedir = "${splunk::homedir}forwarder"
+  $splunk_homedir = "${splunk::splk_homedir}forwarder"
 
   # flow
   Group['splunk group'] -> User['splunk user'] -> File['splunk homedirectory'] -> File['splunk password file'
@@ -24,14 +24,14 @@ class splunk::client::prereq (
 
   group { 'splunk group':
     ensure => present,
-    name   => $group,
+    name   => $splk_group,
   }
 
   user { 'splunk user':
     ensure     => present,
-    name       => $group,
+    name       => $splk_group,
     managehome => false,
-    gid        => $group,
+    gid        => $splk_group,
   }
 
   # create directory's
@@ -41,8 +41,8 @@ class splunk::client::prereq (
   file { 'splunk homedirectory':
     ensure => directory,
     path   => $splunk_homedir,
-    owner  => $user,
-    group  => $group
+    owner  => $splk_user,
+    group  => $splk_group
   }
 
 
@@ -56,7 +56,7 @@ class splunk::client::prereq (
   # put the splunk username and password in a protected file for use with facter's custom facts.
   file { 'splunk password file':
     path    => '/root/.rc_splunk.txt',
-    content => $admin_password,
+    content => $splk_admin_password,
     mode    => '0666',
     owner   => root
   }

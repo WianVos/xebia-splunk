@@ -1,17 +1,17 @@
 # Class: splunk::client::install
 # installs the splunk universal forwarder on a splunk client machine
 class splunk::client::install (
-  $version        = $splunk::version,
+  $splk_version   = $splunk::splk_version,
   $installtype    = $splunk::installtype,
-  $installsource  = $splunk::client_installsource,
+  $installsource  = $splunk::splk_client_installsource,
   $ensure         = $splunk::ensure,
-  $admin_password = $splunk::admin_password ) {
+  $splk_admin_password = $splunk::splk_admin_password ) {
     # input validation
 
 
   # variable setting
 
-  $splunk_homedir = "${splunk::homedir}forwarder"
+  $splunk_homedir = "${splunk::splk_homedir}forwarder"
 
   $manage_link = $ensure ?{
     absent => 'absent',
@@ -28,13 +28,13 @@ class splunk::client::install (
     'rpm'  : {
       file { 'splunkforwarder rpm':
         source => $installsource,
-        path   => "/var/tmp/splunkforwarder-${version}-linux-2.6-x86_64.rpm"
+        path   => "/var/tmp/splunkforwarder-${splk_version}-linux-2.6-x86_64.rpm"
       }
 
       package { 'splunkforwarder':
         ensure   => present,
         provider => rpm,
-        source   => "/var/tmp/splunkforwarder-${version}-linux-2.6-x86_64.rpm",
+        source   => "/var/tmp/splunkforwarder-${splk_version}-linux-2.6-x86_64.rpm",
         require  => File['splunkforwarder rpm']
       }
     }
@@ -52,8 +52,8 @@ class splunk::client::install (
 
   # change the default password (always a good idea), and accept the license splunk throws at us
   exec { 'splunk initial password change':
-    command => "${splunk_homedir}/bin/splunk edit user admin -password ${admin_password} -role admin --accept-license --no-prompt  --answer-yes -auth admin:changeme > ${splunk_homedir}/etc/splunk_pwd_changed-${version}",
-    creates => "${splunk_homedir}/etc/splunk_pwd_changed-${version}"
+    command => "${splunk_homedir}/bin/splunk edit user admin -password ${splk_admin_password} -role admin --accept-license --no-prompt  --answer-yes -auth admin:changeme > ${splunk_homedir}/etc/splunk_pwd_changed-${splk_version}",
+    creates => "${splunk_homedir}/etc/splunk_pwd_changed-${splk_version}"
   }
 
   # setup splunk as a service ..

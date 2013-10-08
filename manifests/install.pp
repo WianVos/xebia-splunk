@@ -1,11 +1,11 @@
 # splunk::install
 class splunk::install (
-  $version        = $splunk::version,
-  $installtype    = $splunk::installtype,
-  $installsource  = $splunk::installsource,
-  $ensure         = $splunk::ensure,
-  $splunk_homedir = $splunk::homedir,
-  $admin_password = $splunk::admin_password) {
+  $splk_version        = $splunk::splk_version,
+  $installtype         = $splunk::installtype,
+  $installsource       = $splunk::splk_installsource,
+  $ensure              = $splunk::ensure,
+  $splunk_homedir      = $splunk::splk_homedir,
+  $splk_admin_password = $splunk::splk_admin_password) {
   # input validation
 
 
@@ -26,13 +26,13 @@ class splunk::install (
     'rpm'     : {
       file { 'splunk rpm':
         source => $installsource,
-        path   => "/var/tmp/splunk-${version}-linux-2.6-x86_64.rpm"
+        path   => "/var/tmp/splunk-${splk_version}-linux-2.6-x86_64.rpm"
       }
 
       package { 'splunk':
         ensure   => present,
         provider => rpm,
-        source   => "/var/tmp/splunk-${version}-linux-2.6-x86_64.rpm",
+        source   => "/var/tmp/splunk-${splk_version}-linux-2.6-x86_64.rpm",
         require  => File['splunk rpm']
       }
     }
@@ -50,8 +50,8 @@ class splunk::install (
 
   # change the default password (always a good idea), and accept the license splunk throws at us
   exec { 'splunk initial password change':
-    command => "${splunk_homedir}/bin/splunk edit user admin -password ${admin_password} -role admin --accept-license --no-prompt  --answer-yes -auth admin:changeme > ${splunk_homedir}/etc/splunk_pwd_changed-${version}",
-    creates => "${splunk_homedir}/etc/splunk_pwd_changed-${version}"
+    command => "${splunk_homedir}/bin/splunk edit user admin -password ${splk_admin_password} -role admin --accept-license --no-prompt  --answer-yes -auth admin:changeme > ${splunk_homedir}/etc/splunk_pwd_changed-${splk_version}",
+    creates => "${splunk_homedir}/etc/splunk_pwd_changed-${splk_version}"
   }
 
   # setup splunk as a service ..
