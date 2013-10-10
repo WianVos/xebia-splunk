@@ -36,10 +36,9 @@ class splunk (
   ) inherits splunk::params {
 
   include splunk::validation
-  
-  
+
   # anchors
-  anchor{'splunk::begin':} 
+  anchor{'splunk::begin':}
   anchor{'splunk::end':}
 
   # class flow definition

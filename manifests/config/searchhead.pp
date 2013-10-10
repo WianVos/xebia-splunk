@@ -1,7 +1,7 @@
 # this class configures the basic searchhead needs
 class splunk::config::searchhead (
-	$splk_sh_roles 					= $splunk::splk_sh_roles,
-	$splk_sh_authenticationserver 	= $splunk::splk_sh_authenticationserver ) {
+  $splk_sh_roles                  = $splunk::splk_sh_roles,
+  $splk_sh_authenticationserver   = $splunk::splk_sh_authenticationserver ) {
 
   splunk_license { 'Splunk Enterprise':
     ensure => present,

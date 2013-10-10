@@ -6,6 +6,6 @@ define splunk::resources::splunk_forward_server (
   @@splunk_check_connection{"splunk_forward_server ${::splk_network_interface}":
     port => $splk_lwf_port
   }
-  ->
+
   @@splunk_forward_server { $::splk_network_interface: port => $splk_lwf_port }
 }

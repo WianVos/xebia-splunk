@@ -10,7 +10,7 @@ class splunk::export::indexer (
   @@splunk_check_connection{$splk_network_interface:
     port => $splk_adminport
   }
-  
+
   @@splunk_search_server { $splk_network_interface:
     port           => $splk_adminport,
     remoteuser     => 'admin',

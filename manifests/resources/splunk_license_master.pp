@@ -5,7 +5,7 @@ define splunk::resources::splunk_license_master (
   #   test clause for puppet_config type/resource
 
 
-  splunk_check_connection { "splunk_license_master ${network_interface}": port => $splk_adminport } ->   splunk_license_master { $splk_network_interface:}
+  splunk_check_connection { "splunk_license_master ${splk_network_interface}": port => $splk_adminport } ->   splunk_license_master { $splk_network_interface:}
 
 
 }

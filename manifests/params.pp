@@ -5,7 +5,7 @@ class splunk::params{
   $server                      = true
   $installtype                 = 'rpm'
   $role                        = 'all'
-  $stored_configs			         = check_storedconfigs()
+  $stored_configs              = check_storedconfigs()
 
   # splunk general params
   $splk_version                = '6.0-182037'
