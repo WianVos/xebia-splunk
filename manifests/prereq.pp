@@ -2,11 +2,11 @@
 # installs the prerequisites for a splunk server
 class splunk::prereq (
   $lvm            = $splunk::lvm,
-  $splunk_indexfs = $splunk::splk_indexer_indexfs,
-  $splunk_homedir = $splunk::splk_homedir,
-  $ensure         = $splunk::ensure,
+  $splk_indexfs = $splunk::splk_indexfs,
+  $splk_homedir = $splunk::splk_homedir,
+  $ensure              = $splunk::ensure,
   $splk_user           = $splunk::user,
-  $splk_group     = $splunk::splk_group,
+  $splk_group          = $splunk::splk_group,
   $splk_admin_password = $splunk::splk_admin_password) {
   # input validation
 
@@ -42,7 +42,7 @@ class splunk::prereq (
 
   file { 'splunk homedirectory':
     ensure => directory,
-    path   => $splunk_homedir,
+    path   => $splk_homedir,
     owner  => $splk_user,
     group  => $splk_group
   }
@@ -51,7 +51,7 @@ class splunk::prereq (
 
   file { 'splunk data filesystem':
     ensure => directory,
-    path   => $splunk_indexfs,
+    path   => $splk_indexfs,
     owner  => $splk_user,
     group  => $splk_group
   }

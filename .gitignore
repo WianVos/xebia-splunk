@@ -4,3 +4,4 @@ files/licenses/splunk10GBKadaster.license
 *.DS*
 *.lock
 *.log
+*coverage*
