@@ -31,14 +31,15 @@ class splunk (
   $splk_indexer_tcpports         = {},
   $splk_indexer_udpports         = {},
   $splk_indexer_splunktcpports   = {},
+  $splk_sh_roles                 = {},
+  $splk_sh_authenticationserver  = {},
   ) inherits splunk::params {
 
-  # include various validation checks here
   include splunk::validation
-
+  
   
   # anchors
-  anchor{'splunk::begin':}
+  anchor{'splunk::begin':} 
   anchor{'splunk::end':}
 
   # class flow definition

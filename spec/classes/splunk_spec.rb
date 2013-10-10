@@ -64,7 +64,70 @@ describe 'splunk' do
         it { should create_splunk_splunktcp_port('splunktcp://192.168.0.3:10007').with_ensure('present').with_enables2sheartbeat('true')} 
         it { should create_splunk_splunktcp_port('splunktcp://192.168.0.4:10008').with_ensure('absent')}        
     end
+    # test validation
+    describe 'splunk class with splk_indexer_tcpports not a hash' do
+      let(:params) {{
+        :splk_indexer_tcpports => 'foobar',
+        }}
+        it { expect { should }.to raise_error(Puppet::Error,/looks to be a String/) }
+    end
+    describe 'splunk class with splk_indexer_splunktcpports not a hash' do
+      let(:params) {{
+        :splk_indexer_splunktcpports => 'foobar',
+        }}
+        it { expect { should }.to raise_error(Puppet::Error,/looks to be a String/) }
+    end
+    describe 'splunk class with splk_indexer_udpports not a hash' do
+      let(:params) {{
+        :splk_indexer_tcpports => 'foobar',
+        }}
+        it { expect { should }.to raise_error(Puppet::Error,/looks to be a String/) }
+    end
+    describe 'splunk class with splk_indexer_indexes not a hash' do
+      let(:params) {{
+        :splk_indexer_indexes => 'foobar',
+        }}
+        it { expect { should }.to raise_error(Puppet::Error,/looks to be a String/) }
+    end
+  end
+
+
+  context 'searchhead stream testing' do
+    let (:params) {{:role => 'searchhead'}}
+    let (:facts) {{ :osfamily => 'RedHat' }}
+
+    describe 'splunk class with splk_sh_roles filled' do
+      let(:params) {{
+      :splk_sh_roles => {'role1' => {'ensure' => 'present', 'importroles' => ['role2','role3'], 'srchtimewin' => '60' }, 
+                         'role2' => {'ensure' => 'present', 'srchtimewin' => '60' },
+                         'role3' => {'ensure' => 'absent'}}
+      }}
+      it { should create_splunk_role('role1').with_ensure('present').with_importroles(['role2','role3']).with_srchtimewin('60')}
+      it { should create_splunk_role('role2').with_ensure('present').with_srchtimewin('60')}
+      it { should create_splunk_role('role3').with_ensure('absent')}
+    end
+    describe 'splunk class with splk_sh_authenticationserver filled' do
+      let(:params) {{
+        :splk_sh_authenticationserver => {'server1' => { 'ensure' => 'present', 'binddn' => 'tst123', 'binddnpassword' => 'test123' }}
+        }}
+        it { should create_splunk_authentication_server('server1').with_ensure('present').with_binddn('tst123').with_binddnpassword('test123')}
+    end
+    describe 'splunk class with splk_sh_roles not a hash' do
+      let(:params) {{
+        :splk_sh_roles => 'foobar',
+        }}
+        it { expect { should }.to raise_error(Puppet::Error,/looks to be a String/) }
+    end
+    describe 'splunk class with splk_sh_authenticationserver not a hash' do
+      let(:params) {{
+        :splk_sh_authenticationserver => 'foobar',
+        }}
+        it { expect { should }.to raise_error(Puppet::Error,/looks to be a String/) }
+    end
   end
 end
+
+
+    
 
 
