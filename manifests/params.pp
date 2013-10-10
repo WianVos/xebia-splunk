@@ -17,6 +17,7 @@ class splunk::params{
   $splk_minfreemb              = 500
   $splk_admin_password         = 'test123'
   $splk_network_interface      = $ipaddress_eth1
+  $splk_indexfs                = '/var/splunkdata'
   $splk_installsource          = "puppet:///modules/splunk/rpm/splunk-${splk_version}-linux-2.6-x86_64.rpm"
   $splk_client_installsource   = "puppet:///modules/splunk/rpm/splunkforwarder-${splk_version}-linux-2.6-x86_64.rpm"
 
@@ -24,7 +25,7 @@ class splunk::params{
 
 
   # indexer params
-  $splk_indexer_indexfs        = '/var/splunkdata'
+  
   $splk_lwf_port             = '10011'
 
   # universal forwarder params

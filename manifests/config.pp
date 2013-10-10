@@ -1,7 +1,7 @@
 #class splunk::config
 # configures the splunk instance
 class splunk::config (
-  $splunk_indexfs         = $splunk::splk_indexer_indexfs,
+  $splk_indexfs           = $splunk::splk_indexfs,
   $splk_admin_password    = $splunk::splk_admin_password,
   $splk_adminport         = $splunk::splk_adminport,
   $splk_webport           = $splunk::splk_webport,
@@ -11,7 +11,7 @@ class splunk::config (
   splunk_login { 'admin': password => $splk_admin_password }
 
   splunk_config { 'default':
-    datastore  => $splunk_indexfs,
+    datastore  => $splk_indexfs,
     hostname   => $::fqdn,
     webport    => $splk_webport,
     splunkport => $splk_adminport,

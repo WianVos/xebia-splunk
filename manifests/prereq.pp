@@ -1,10 +1,8 @@
 # class splunk::prereq
 # installs the prerequisites for a splunk server
 class splunk::prereq (
-  $lvm            = $splunk::lvm,
-  $splk_indexfs = $splunk::splk_indexfs,
-  $splk_homedir = $splunk::splk_homedir,
-  $ensure              = $splunk::ensure,
+  $splk_indexfs        = $splunk::splk_indexfs,
+  $splk_homedir        = $splunk::splk_homedir,
   $splk_user           = $splunk::user,
   $splk_group          = $splunk::splk_group,
   $splk_admin_password = $splunk::splk_admin_password) {
