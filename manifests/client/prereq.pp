@@ -11,8 +11,7 @@ class splunk::client::prereq (
   $splunk_homedir = "${splunk::splk_homedir}forwarder"
 
   # flow
-  Group['splunk group'] -> User['splunk user'] -> File['splunk homedirectory'] -> File['splunk password file'
-    ]
+  Group['splunk group'] -> User['splunk user'] -> File['splunk homedirectory'] -> File['splunk password file']
 
   # # dependant flow
 

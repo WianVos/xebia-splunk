@@ -25,9 +25,11 @@ class splunk::params{
 
 
   # indexer params
-  
+
   $splk_lwf_port             = '10011'
 
+  # licensemanager params
+  $splk_licensemaster        = false
   # universal forwarder params
 
 

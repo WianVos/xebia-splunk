@@ -29,6 +29,7 @@ class splunk::validation{
   validate_hash($splunk::splk_indexer_udpports)
   validate_hash($splunk::splk_sh_roles)
   validate_hash($splunk::splk_sh_authenticationserver)
+  validate_hash($splunk::splk_lm_licenses)
 
 
   # verify the installtype

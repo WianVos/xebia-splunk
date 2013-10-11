@@ -15,6 +15,7 @@ class splunk (
   $role                          = $splunk::params::role,
   $server                        = $splunk::params::server,
   $stored_configs                = $splunk::params::stored_configs,
+  $splk_licensemaster            = $splunk::params::splk_licensemaster,
   $splk_version                  = $splunk::params::splk_version,
   $splk_homedir                  = $splunk::params::splk_homedir,
   $splk_indexfs                  = $splunk::params::splk_indexfs,
@@ -34,6 +35,7 @@ class splunk (
   $splk_indexer_splunktcpports   = {},
   $splk_sh_roles                 = {},
   $splk_sh_authenticationserver  = {},
+  $splk_lm_licenses              = {},
   ) inherits splunk::params {
 
   include splunk::validation
@@ -46,7 +48,7 @@ class splunk (
 
 
 
-  if $server == true {
+  if str2bool($server) {
     Anchor['splunk::begin']
     -> class { 'splunk::prereq': }
     -> class { 'splunk::install': }
@@ -58,22 +60,28 @@ class splunk (
     case $role {
       'all'        : {Class['Splunk::Config'] -> class { 'splunk::config::all': } ~> Class['Splunk::Service']}
       'indexer'    : {Class['Splunk::Config'] -> class { 'splunk::config::indexer': } ~> Class['Splunk::Service']}
-      'searchhead' : {Class['Splunk::Config'] -> class { 'splunk::config::searchhead': } ~> Class['Splunk::Service'] -> class { 'splunk::post_config_searchhead':}}
-      default      : { fail('role parameter contains a value not supported by this module')}
+      'searchhead' : {Class['Splunk::Config'] -> class { 'splunk::config::searchhead': } ~> Class['Splunk::Service']}
+      default      : { fail("role parameter contains a value ${role} not supported by this module")}
     }
 
-    if $stored_configs == true {
+    if str2bool($stored_configs)  {
       case $role {
         'indexer'    : {Class['Splunk::Config'] -> class { 'splunk::export::indexer': } -> class { 'splunk::import::indexer': } ~> Class['Splunk::Service']}
-        'searchhead' : {Class['Splunk::Config'] -> class { 'splunk::export::searchhead': } -> class { 'splunk::import::searchhead': } ~> Class['Splunk::Service']}
-        default      : { fail('role parameter contains a value not supported by this module')}
+        'searchhead' : {Class['Splunk::Config'] -> class { 'splunk::import::searchhead': } ~> Class['Splunk::Service']}
+        default      : { fail("role parameter contains a value ${role} not supported by this module")}
         }
       }
+    if str2bool($splk_licensemaster) {
+      Class['Splunk::Config'] -> class{'splunk::config::licensemaster':}  ~> Class['Splunk::Service']
+      if str2bool($stored_configs)  {
+        Class['Splunk::Config::Licensemaster'] -> class { 'splunk::export::licensemaster': } ~> Class['Splunk::Service']
+      }
     }
+  }
 
 
-  if $server == false {
-    Anchor['splunk::begin'] -> class { 'splunk::client::prereq': } -> class { 'splunk::client::install': } ~> class { 'splunk::client::service': } -> Anchor['splunk::end']
-    if $stored_configs == true {Class['Splunk::Client::Install'] -> class {'splunk::import::client': } ~> Class['Splunk::Client::Service']}
+  if str2bool($server) == false {
+    Anchor['splunk::begin'] -> class { 'splunk::client::prereq': } -> class { 'splunk::client::install': } ~> class { 'splunk::service': } -> Anchor['splunk::end']
+    if $stored_configs == true {Class['Splunk::Client::Install'] -> class {'splunk::import::client': } ~> Class['Splunk::Service']}
   }
 }

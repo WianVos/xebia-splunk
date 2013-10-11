@@ -25,6 +25,21 @@ describe 'splunk' do
       it { expect { should }.to raise_error(Puppet::Error, /Nexenta not supported/) }
     end
   end
+
+  context 'unsupported role parameter' do
+    describe 'splunk class with an unsupported role parameter' do
+      let(:facts) {{
+        :osfamily        => 'RedHat',
+      }}
+      let(:params) {{
+        :role            => 'nothing',
+        :server          => 'true'
+        }}
+
+      it { expect { should }.to raise_error(Puppet::Error, /role parameter contains/) }
+    end
+  end
+
   context 'general server config testing' do
     let(:params) {{:role => 'indexer'}}
 
@@ -158,8 +173,25 @@ describe 'splunk' do
         it { expect { should }.to raise_error(Puppet::Error,/looks to be a String/) }
     end
   end
-end
+  context 'licensemaster configuration' do
+    let (:params) {{:server => 'true',
+                    :role => 'searchhead'}}
+    let (:facts) {{ :osfamily => 'RedHat' }}
+    
+    describe 'test the licensemaster stream with one or more licenses configured' do
 
+      let(:params) {{ :splk_lm_licenses => {'Splunk Enterprise' => {'ensure' => 'present', 'source' => 'puppet:///modules/splunk/licenses/splunk10GBKadaster.license'}},
+                      :splk_licensemaster => 'true'
+                    }}
+      it { should create_class('splunk::config::licensemaster')}
+      it { should create_splunk_license('Splunk Enterprise').with_ensure('present').with_source('puppet:///modules/splunk/licenses/splunk10GBKadaster.license')}
+    end
+    describe 'test the validation of the splk_lm_licenses hash' do
+      let(:params) {{ :splk_lm_licenses => 'stringie'}}
+      it { expect { should }.to raise_error(Puppet::Error,/looks to be a String/) }
+    end  
+end
+end
 
     
 
