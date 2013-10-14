@@ -1,5 +1,5 @@
 name 'xebia-splunk'
-version '1.0.0.0'
+version '1.0.0'
 
 author 'xebia'
 license 'Apache V2.0'
