@@ -3,8 +3,7 @@ class splunk::config::indexer (
   $splk_indexer_indexes         = $splunk::splk_indexer_indexes,
   $splk_indexer_tcpports        = $splunk::splk_indexer_tcpports,
   $splk_indexer_udpports        = $splunk::splk_indexer_udpports,
-  $splk_indexer_splunktcpports  = $splunk::splk_indexer_splunktcpports,
-  $splk_apps                    = $splunk::splk_apps ) {
+  $splk_indexer_splunktcpports  = $splunk::splk_indexer_splunktcpports) {
 
   #   test clause for puppet_config type/resource
 
@@ -12,5 +11,4 @@ class splunk::config::indexer (
   create_resources(splunk_tcp_port, $splk_indexer_tcpports)
   create_resources(splunk_udp_port, $splk_indexer_udpports)
   create_resources(splunk_splunktcp_port, $splk_indexer_splunktcpports)
-  create_resources(splunk_app, $splk_apps)
 }

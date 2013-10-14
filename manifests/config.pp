@@ -5,7 +5,8 @@ class splunk::config (
   $splk_admin_password    = $splunk::splk_admin_password,
   $splk_adminport         = $splunk::splk_adminport,
   $splk_webport           = $splunk::splk_webport,
-  $splk_minfreemb         = $splunk::splk_minfreemb) {
+  $splk_minfreemb         = $splunk::splk_minfreemb,
+  $splk_apps              = $splunk::splk_apps ) {
   #   test clause for puppet_config type/resource
 
   splunk_login { 'admin': password => $splk_admin_password }
@@ -17,6 +18,6 @@ class splunk::config (
     splunkport => $splk_adminport,
     minfreemb  => $splk_minfreemb,
   }
-
-
+ 
+  create_resources(splunk_app, $splk_apps)
 }
