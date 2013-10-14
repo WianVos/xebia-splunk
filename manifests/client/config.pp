@@ -1,4 +1,10 @@
 # splunk client configuration class
-class splunk::client::config ($splk_admin_password = $splunk::splk_admin_password, $splk_adminport = $splunk::splk_adminport) {
+class splunk::client::config (
+  $splk_admin_password  = $splunk::splk_admin_password,
+  $splk_adminport       = $splunk::splk_adminport,
+  $splk_apps            = $splunk::splk_apps) {
+
+
+  $splk_apps                    = $splunk::splk_apps
 
 }

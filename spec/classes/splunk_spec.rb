@@ -62,6 +62,7 @@ describe 'splunk' do
 
      it { should create_file('splunk data filesystem').with_path('/var/splunk/data')}
     end
+    
   end
 
   context 'indexer stream testing' do
@@ -134,6 +135,24 @@ describe 'splunk' do
         }}
         it { expect { should }.to raise_error(Puppet::Error,/looks to be a String/) }
     end
+    describe 'splunk class with splk_apps not a hash' do
+      let(:params) {{
+        :splk_apps => 'foobar',
+        }}
+        it { expect { should }.to raise_error(Puppet::Error,/looks to be a String/) }
+    end
+    describe 'splunk class with splk_apps filled' do
+      let(:params) {{
+        :splk_apps => {'SOS' => {    'ensure' => 'present', 
+                                        'source' => 'puppet:///modules/splunk/apps/SoS_3.1.0-182161.tar', 
+                                        'enabled' => 'true', 
+                                        'visible' => 'true' },
+                          'FooBar' => { 'ensure' => 'absent'}},
+        }}
+        it { should create_splunk_app('SOS').with_ensure('present').with_source('puppet:///modules/splunk/apps/SoS_3.1.0-182161.tar').with_enabled('true').with_visible('true')}
+        it { should create_splunk_app('FooBar').with_ensure('absent')}
+
+    end
   end
 
 
@@ -172,6 +191,24 @@ describe 'splunk' do
         }}
         it { expect { should }.to raise_error(Puppet::Error,/looks to be a String/) }
     end
+    describe 'splunk class with splk_apps not a hash' do
+      let(:params) {{
+        :splk_apps => 'foobar',
+        }}
+        it { expect { should }.to raise_error(Puppet::Error,/looks to be a String/) }
+    end
+    describe 'splunk class with splk_apps filled' do
+      let(:params) {{
+        :splk_apps => {'SOS' => {    'ensure' => 'present', 
+                                        'source' => 'puppet:///modules/splunk/apps/SoS_3.1.0-182161.tar', 
+                                        'enabled' => 'true', 
+                                        'visible' => 'true' },
+                       'FooBar' => { 'ensure' => 'absent'}},
+        }}
+        it { should create_splunk_app('SOS').with_ensure('present').with_source('puppet:///modules/splunk/apps/SoS_3.1.0-182161.tar').with_enabled('true').with_visible('true')}
+        it { should create_splunk_app('FooBar').with_ensure('absent')}
+
+    end
   end
   context 'licensemaster configuration' do
     let (:params) {{:server => 'true',
@@ -190,6 +227,7 @@ describe 'splunk' do
       let(:params) {{ :splk_lm_licenses => 'stringie'}}
       it { expect { should }.to raise_error(Puppet::Error,/looks to be a String/) }
     end  
+
 end
 end
 

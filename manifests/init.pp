@@ -36,6 +36,7 @@ class splunk (
   $splk_sh_roles                 = {},
   $splk_sh_authenticationserver  = {},
   $splk_lm_licenses              = {},
+  $splk_apps                     = {},
   ) inherits splunk::params {
 
   include splunk::validation
