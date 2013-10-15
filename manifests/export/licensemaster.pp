@@ -5,7 +5,7 @@ class splunk::export::licensemaster (
 
   #   test clause for puppet_config type/resource
   @@splunk::resources::splunk_license_master {$::hostname:
-    splk_adminport => $splk_adminport,
+    splk_adminport         => $splk_adminport,
     splk_network_interface => $splk_network_interface
   }
 

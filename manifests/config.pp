@@ -18,6 +18,6 @@ class splunk::config (
     splunkport => $splk_adminport,
     minfreemb  => $splk_minfreemb,
   }
- 
+
   create_resources(splunk_app, $splk_apps)
 }

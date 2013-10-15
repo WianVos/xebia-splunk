@@ -3,10 +3,8 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..','splunk.rb'))
 
 Puppet::Type.type(:splunk_app).provide(:splunk_cli, :parent => Puppet::Provider::Splunk ) do
 
-  has_feature :visibility
-  
   confine :osfamily => [:redhat, :ubuntu]
-  confine :exists => "/opt/splunk/bin"
+  confine :exists => "/etc/splunkforwarder"
 
   commands :splunk => "splunk"
 
@@ -24,18 +22,17 @@ Puppet::Type.type(:splunk_app).provide(:splunk_cli, :parent => Puppet::Provider:
 
       configured = :true
       enabled = :true
-      visible = :true
+      
 
       appname, config_param, enabled_param, visible_param = line.delete("\n").split
 
       configured = :false unless config_param == "CONFIGURED"
       enabled = :false unless enabled_param == "ENABLED"
-      visible = :false unless visible_param == "VISIBLE"
+      
 
       new( :name => appname,
       :configured => configured,
       :enabled => enabled,
-      :visible => visible,
       :ensure => :present )
 
     end
@@ -54,7 +51,6 @@ Puppet::Type.type(:splunk_app).provide(:splunk_cli, :parent => Puppet::Provider:
 
     if install_file != nil
       splunk_exec("install", args, splunkd_running=true)
-      visible=("#{resource[:visible]}")
       enabled=("#{resource[:enabled]}")  
     else
       self.notice "installfile not set. Unable to install the app. Beter luck next time"
@@ -89,7 +85,7 @@ Puppet::Type.type(:splunk_app).provide(:splunk_cli, :parent => Puppet::Provider:
     
     enabled = :true
     
-    appname, config_param, enabled_param, visible_param = splunk_exec("list", args).delete("\n").split
+    appname, config_param, enabled_param = splunk_exec("list", args).delete("\n").split
     
     enabled = :false unless enabled_param == "ENABLED"
     
@@ -97,32 +93,7 @@ Puppet::Type.type(:splunk_app).provide(:splunk_cli, :parent => Puppet::Provider:
     
   end
 
-  def visible
-    
-    args = []
-      
-    args << "app"
-    args << "#{resource[:name]}"
-        
-    visible = :true
-        
-    appname, config_param, enabled_param, visible_param = splunk_exec("list", args).delete("\n").split
-        
-    visible = :false unless visible_param == "VISIBLE"
-    return visible
-    
-  end
-
-  def visible=(value)
-    args = []
-
-    args << "app"
-    args << "#{resource[:name]}"
-    args << "-visible #{resource[:visible]}"
-
-    splunk_exec("edit", args)
-
-  end
+  
 
   def enabled=(value)
     args = []
