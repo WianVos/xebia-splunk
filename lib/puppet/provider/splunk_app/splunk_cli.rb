@@ -4,9 +4,9 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..','splunk.rb'))
 Puppet::Type.type(:splunk_app).provide(:splunk_cli, :parent => Puppet::Provider::Splunk ) do
 
   has_feature :visibility
-  
+
   confine :osfamily => [:redhat, :ubuntu]
-  confine :exists => "/opt/splunk/bin"
+  confine :exists => "/opt/splunk"
 
   commands :splunk => "splunk"
 

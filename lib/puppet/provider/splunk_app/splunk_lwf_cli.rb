@@ -4,7 +4,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..','splunk.rb'))
 Puppet::Type.type(:splunk_app).provide(:splunk_cli, :parent => Puppet::Provider::Splunk ) do
 
   confine :osfamily => [:redhat, :ubuntu]
-  confine :exists => "/etc/splunkforwarder"
+  confine :exists => "/opt/splunkforwarder"
 
   commands :splunk => "splunk"
 
