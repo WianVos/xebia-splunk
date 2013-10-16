@@ -2,7 +2,8 @@ require 'pathname'
 
 Puppet::Type.newtype(:splunk_app) do
 
-  feature :visibility, "handles visibility of splunk apps", 
+  feature :visibility, "handles visibility of splunk apps"
+  
   desc 'custom type to install apps to splunk'
 
   # ensurable
