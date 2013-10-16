@@ -83,6 +83,6 @@ class splunk (
 
   if str2bool($server) == false {
     Anchor['splunk::begin'] -> class { 'splunk::client::prereq': } -> class { 'splunk::client::install': } -> class{ 'splunk::client::config':} ~> class { 'splunk::service': } -> Anchor['splunk::end']
-    if $stored_configs == true {Class['Splunk::Client::Install'] -> class {'splunk::import::client': } ~> Class['Splunk::Service']}
+    if str2bool($stored_configs) {Class['Splunk::Client::Install'] -> class {'splunk::import::client': } ~> Class['Splunk::Service']}
   }
 }
